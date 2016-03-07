@@ -9,7 +9,7 @@ class RegisterContainer extends Component {
 
   render(){
     return <SignUpPage registerUser={this.props.registerUser}
-                       userStartRegister={this.props.userStartRegister}/>
+                       isLoding={this.props.isLoding}/>
   }
 
 }
@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state){
-  return { userStartRegister: state.user.start_register }
+  return { isLoding: state.user.is_loading }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

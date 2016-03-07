@@ -75,8 +75,8 @@ class SignUpForm extends Component {
 
         <Button type="submit"
                 is-primary
-                is-disabled={this.props.userStartRegister}
-                is-loading={this.props.userStartRegister}>Register</Button>
+                is-disabled={this.props.isLoding}
+                is-loading={this.props.isLoding}>Register</Button>
 
         <br/><br/>
 

@@ -17,7 +17,7 @@ export default class SignInPage extends Component {
           <Columns>
             <Column is-half is-offset-quarter>
               <SignInForm authenticateUser={this.props.authenticateUser}
-                          userStartLogin={this.props.userStartLogin}/>
+                          isLoding={this.props.isLoding}/>
             </Column>
           </Columns>
 

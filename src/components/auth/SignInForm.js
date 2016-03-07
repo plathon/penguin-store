@@ -61,8 +61,8 @@ class SignInForm extends Component {
         <p>
           <Button type="submit"
                   is-primary
-                  is-disabled={this.props.userStartLogin}
-                  is-loading={this.props.userStartLogin}>Enter</Button>
+                  is-disabled={this.props.isLoding}
+                  is-loading={this.props.isLoding}>Enter</Button>
 
           <Link to="reset-password" className="is-pulled-right">Forgot Password</Link>
         </p><br/>

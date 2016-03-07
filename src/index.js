@@ -40,6 +40,15 @@ const UserIsAuthenticated = UserAuthWrapper({
   wrapperDisplayName: 'UserIsAuthenticated'
 })
 
+const UserIsAdmin = UserAuthWrapper({
+  authSelector: state => state.user.data,
+  redirectAction: routeActions.replace,
+  failureRedirectPath: 'signin',
+  wrapperDisplayName: 'UserIsAdmin',
+  predicate: user => user.type === 'admin',
+  allowRedirectBack: false
+})
+
 render(
   <div>
     <Provider store={store}>
@@ -51,8 +60,8 @@ render(
           <IndexRoute component={Products}/>
         </Route>
         <Route path="admin">
-          <Route path="products/new" component={UserIsAuthenticated(ProductADM)}/>
-          <Route path="products/:product/edit" component={UserIsAuthenticated(ProductADM)}/>
+          <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
+          <Route path="products/:product/edit" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
         </Route>
       </Router>
     </Provider>

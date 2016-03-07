@@ -9,7 +9,7 @@ class AuthContainer extends Component {
 
   render(){
     return <SignInPage authenticateUser={this.props.authenticateUser}
-                       userStartLogin={this.props.userStartLogin}/>
+                       isLoding={this.props.isLoding}/>
   }
 
 }
@@ -19,7 +19,7 @@ function mapDispatchToProps (dispatch) {
 }
 
 function mapStateToProps (state) {
-  return { userStartLogin: state.user.start_login }
+  return { isLoding: state.user.is_loading }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)

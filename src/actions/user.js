@@ -25,7 +25,7 @@ export function authenticateUser (user = {}, redirect = null) {
       let user  = jwt_decode(token)
       dispatch(userSuccessfullyLogged(token, user))
       if (redirect) browserHistory.replace(redirect)
-      else browserHistory.replace('/products')
+      else browserHistory.replace('/')
 
     }).catch((res) => {
 
@@ -51,7 +51,7 @@ export function registerUser (user = {}) {
       let token = res.data.token
       let user  = jwt_decode(token)
       dispatch(userSuccessfullyLogged(token, user))
-      browserHistory.replace('/products')
+      browserHistory.replace('/')
 
     })
     .catch((res) => {
