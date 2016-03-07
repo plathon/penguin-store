@@ -1,0 +1,48 @@
+import React, { Component } from 'react'
+
+import Container from '../../../template/src/components/Container'
+import Section from '../../../template/src/components/Section'
+import Columns from '../../../template/src/components/Columns'
+import Column from '../../../template/src/components/Column'
+
+import ProductForm from './ProductForm'
+
+export default class ProductPage extends Component {
+
+  constructor (props) {
+    super(props)
+    this.submitProduct = this.submitProduct.bind(this)
+  }
+
+  submitProduct (product) {
+    let productIndex = this.props.productIndex
+    if (!productIndex) {
+      //inserting
+      this.props.insertProduct(product)
+    } else {
+      //editing
+      this.props.updateProduct(product, productIndex)
+    }
+  }
+
+  render () {
+    return (
+      <Section>
+        <Container>
+          <Columns>
+            <Column is-10 is-offset-1>
+              <h1 className="title">Product</h1>
+            </Column>
+          </Columns>
+          <Columns>
+            <Column is-10 is-offset-1>
+              <ProductForm isLoading={this.props.isLoading}
+                           productIndex={this.props.productIndex}
+                           submitProduct={this.submitProduct}/>
+            </Column>
+          </Columns>
+        </Container>
+      </Section>
+    )
+  }
+}

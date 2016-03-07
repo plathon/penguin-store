@@ -1,0 +1,12 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.input, .textarea {
+  box-shadow: 0 !important;
+}
+
+.is-danger {
+  color: red !important;
+}
