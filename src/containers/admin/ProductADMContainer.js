@@ -10,7 +10,8 @@ class ProductADMContainer extends Component {
     return <ProductPage isLoading={this.props.isLoading}
                         insertProduct={this.props.insertProduct}
                         updateProduct={this.props.updateProduct}
-                        productIndex={this.props.params.product}/>
+                        productIndex={this.props.params.product}
+                        categories={this.props.categories}/>
   }
 }
 
@@ -20,7 +21,8 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   return {
-    isLoading: state.product.is_loading
+    isLoading: state.product.is_loading,
+    categories: state.category.items
   }
 }
 

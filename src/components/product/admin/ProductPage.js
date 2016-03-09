@@ -38,7 +38,8 @@ export default class ProductPage extends Component {
             <Column is-10 is-offset-1>
               <ProductForm isLoading={this.props.isLoading}
                            productIndex={this.props.productIndex}
-                           submitProduct={this.submitProduct}/>
+                           submitProduct={this.submitProduct}
+                           categories={this.props.categories}/>
             </Column>
           </Columns>
         </Container>

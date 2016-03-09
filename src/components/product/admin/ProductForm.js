@@ -85,11 +85,10 @@ class ProductForm extends Component {
                is-danger={quantity.touched && quantity.error}
                {...quantity}/>
 
-       <Select name="category"
+       <Select {...category}
                label="Category"
-               value={category.value}
-               data={[{'': '', 'name': 'Main Category'}]}
-               {...category}/>
+               value={category.value || ''}
+               data={this.props.categories}/>
 
        <p className="control">
          <Link to="/admin/categories">Manage Categories</Link>
