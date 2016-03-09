@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
+import { Link } from 'react-router'
 import { loadProduct } from '../../../actions/product'
 
 import Input from '../../../template/src/components/Input'
@@ -89,6 +90,10 @@ class ProductForm extends Component {
                value={category.value}
                data={[{'': '', 'name': 'Main Category'}]}
                {...category}/>
+
+       <p className="control">
+         <Link to="/admin/categories">Manage Categories</Link>
+       </p>
 
        <Checkbox description="Product available to buy"
                  {...available}/>

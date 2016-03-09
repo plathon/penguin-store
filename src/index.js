@@ -15,6 +15,7 @@ import Resgister from './containers/RegisterContainer'
 import ResetPassword from './containers/ResetPasswordContainer'
 import Products from './containers/ProductsContainer'
 import ProductADM from './containers/admin/ProductADMContainer'
+import CategoryADM from './containers/admin/CategoryADMContainer'
 
 const history = browserHistory
 const synchronizedHistory = syncHistory(history)
@@ -62,6 +63,7 @@ render(
         <Route path="admin">
           <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
           <Route path="products/:product/edit" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
+          <Route path="categories" component={UserIsAuthenticated(UserIsAdmin(CategoryADM))}/>
         </Route>
       </Router>
     </Provider>
