@@ -18,6 +18,7 @@ export default class CategoryListComponent extends Component {
               <th>{category.name}</th>
               <th>
                 <Button type="button"
+                        is-pulled-right
                         is-small
                         onClick={this.props.removeCategory.bind(this, i)}
                         is-disabled={this.props.isLoading}

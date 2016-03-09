@@ -20,10 +20,10 @@ export default function TopBarComponent (props) {
             </span>
             <div className="header-right header-menu">
               <span className="header-item">
-                <Link to="products" className="is-active">Home</Link>
+                <Link to="/" className="is-active">Home</Link>
               </span>
               <span className="header-item">
-                <a href="#">My account</a>
+                <Link to="user" className="is-active">My account</Link>
               </span>
               <span className="header-item">
                 <Link to="signin" className="button is-primary is-inverted">Sign In</Link>

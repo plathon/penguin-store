@@ -4,7 +4,10 @@ import { USER_START_LOGIN,
          USER_START_REGISTER,
          USER_REGISTERED_SUCCESSFULLY,
          USER_REGISTER_FAILED,
-         USER_LOGGED_OUT } from '../constants/ActionTypes'
+         USER_LOGGED_OUT,
+         USER_START_CHANGE_DATA,
+         USER_DATA_SUCCESSFULLY_CHANGED,
+         USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   data: {},
@@ -38,6 +41,17 @@ export default (state = initialState, action) => {
 
     case USER_LOGGED_OUT:
       return { ...state, token: '', data: {} }
+
+    case USER_START_CHANGE_DATA:
+      return { ...state, is_loading: true }
+
+    case USER_DATA_SUCCESSFULLY_CHANGED:
+      return { ...state,
+               data: { ...state.data, ...action.payload },
+               is_loading: false }
+
+    case USER_DATA_CHANGE_FAILED:
+      return { ...state, is_loading: false }
 
     default:
       return state;

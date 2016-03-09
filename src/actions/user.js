@@ -9,7 +9,10 @@ import { USER_START_LOGIN,
          USER_START_REGISTER,
          USER_REGISTERED_SUCCESSFULLY,
          USER_REGISTER_FAILED,
-         USER_LOGGED_OUT } from '../constants/ActionTypes'
+         USER_LOGGED_OUT,
+         USER_START_CHANGE_DATA,
+         USER_DATA_SUCCESSFULLY_CHANGED,
+         USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
 
 /**
 * Send auth credentials to the server
@@ -30,7 +33,7 @@ export function authenticateUser (user = {}, redirect = null) {
     }).catch((res) => {
 
       let message = res.data
-      alertify.logPosition("top right").error(message);
+      alertify.logPosition("top right").error(message)
       dispatch(userLoginFailed(message))
 
     })
@@ -57,7 +60,7 @@ export function registerUser (user = {}) {
     .catch((res) => {
 
       let message = res.data
-      alertify.logPosition("top right").error(message);
+      alertify.logPosition("top right").error(message)
       dispatch(userRegisterFailed(message))
 
     })
@@ -71,6 +74,20 @@ export function registerUser (user = {}) {
 export function logoutUser () {
   return (dispatch) => {
     dispatch(userLoggedOut())
+  }
+}
+
+/**
+* change user data
+**/
+
+export function changeUserData (userData) {
+  return (dispatch) => {
+    dispatch(userStartChangeData())
+    setTimeout(() => {
+      alertify.logPosition("top right").success("User data successfully updated")
+      dispatch(userDataSuccessfullyChanged(userData))
+     }, 1000)
   }
 }
 
@@ -108,4 +125,20 @@ function userSuccessfullyLogged (token = null, user = {}) {
 
 function userLoggedOut () {
   return { type: USER_LOGGED_OUT }
+}
+
+/**
+* change user data actions
+**/
+
+function userStartChangeData () {
+  return { type: USER_START_CHANGE_DATA }
+}
+
+function userDataChangeFailed () {
+  return { type: USER_DATA_CHANGE_FAILED }
+}
+
+function userDataSuccessfullyChanged (userData = {}) {
+  return { type: USER_DATA_SUCCESSFULLY_CHANGED, payload: userData }
 }

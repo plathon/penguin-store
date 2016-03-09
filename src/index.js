@@ -14,6 +14,8 @@ import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 import ResetPassword from './containers/ResetPasswordContainer'
 import Products from './containers/ProductsContainer'
+import User from './containers/UserContainer'
+
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
 
@@ -59,6 +61,7 @@ render(
         <Route path="reset-password" component={ResetPassword}/>
         <Route path="/" component={App}>
           <IndexRoute component={Products}/>
+          <Route path="user" component={UserIsAuthenticated(User)}/>
         </Route>
         <Route path="admin">
           <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
