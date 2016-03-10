@@ -6,11 +6,10 @@ import Section from '../../template/src/components/Section'
 import Columns from '../../template/src/components/Columns'
 import Column from '../../template/src/components/Column'
 
-import Button from '../../template/src/components/Button'
+import AddressesList from './AddressesListComponent'
 
 export default class AddressesPageComponent extends Component {
   render () {
-    console.log(this.props)
     return (
       <Section>
         <Container>
@@ -26,28 +25,9 @@ export default class AddressesPageComponent extends Component {
 
           <Columns>
             <Column is-10 is-offset-1>
-
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Address</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.addresses.map((address, i) =>
-                    <tr>
-                      <th>
-                        <string>test</string>
-                      </th>
-                      <th>
-                        <Button type="button" is-pulled-right>Delete</Button>
-                      </th>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-
+              <AddressesList addresses={this.props.addresses}
+                             removeAddress={this.props.removeAddress}
+                             isLoading={this.props.isLoading}/>
             </Column>
           </Columns>
 
