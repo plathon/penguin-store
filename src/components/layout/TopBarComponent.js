@@ -23,6 +23,9 @@ export default function TopBarComponent (props) {
                 <Link to="/" className="is-active">Home</Link>
               </span>
               <span className="header-item">
+                <Link to="addresses" className="is-active">My Addresses</Link>
+              </span>
+              <span className="header-item">
                 <Link to="user" className="is-active">My account</Link>
               </span>
               <span className="header-item">

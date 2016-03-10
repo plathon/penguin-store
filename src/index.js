@@ -15,6 +15,8 @@ import Resgister from './containers/RegisterContainer'
 import ResetPassword from './containers/ResetPasswordContainer'
 import Products from './containers/ProductsContainer'
 import User from './containers/UserContainer'
+import Addresses from './containers/AddressesContainer'
+import Address from './containers/AddressContainer'
 
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
@@ -62,6 +64,8 @@ render(
         <Route path="/" component={App}>
           <IndexRoute component={Products}/>
           <Route path="user" component={UserIsAuthenticated(User)}/>
+          <Route path="addresses" component={UserIsAuthenticated(Addresses)}/>
+          <Route path="address" component={UserIsAuthenticated(Address)}/>
         </Route>
         <Route path="admin">
           <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
