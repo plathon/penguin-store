@@ -25,6 +25,7 @@
     "jwt-decode": "^1.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-image-gallery": "^0.5.10",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.0-rc5",
     "react-router-redux": "^3.0.0",

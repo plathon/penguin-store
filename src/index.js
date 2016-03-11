@@ -14,6 +14,7 @@ import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 import ResetPassword from './containers/ResetPasswordContainer'
 import Products from './containers/ProductsContainer'
+import Product from './containers/ProductContainer'
 import User from './containers/UserContainer'
 import Addresses from './containers/AddressesContainer'
 import Address from './containers/AddressContainer'
@@ -63,6 +64,7 @@ render(
         <Route path="reset-password" component={ResetPassword}/>
         <Route path="/" component={App}>
           <IndexRoute component={Products}/>
+          <Route path="product/:product" component={Product}/>
           <Route path="user" component={UserIsAuthenticated(User)}/>
           <Route path="addresses" component={UserIsAuthenticated(Addresses)}/>
           <Route path="address" component={UserIsAuthenticated(Address)}/>
