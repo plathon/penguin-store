@@ -18,6 +18,7 @@ import Product from './containers/ProductContainer'
 import User from './containers/UserContainer'
 import Addresses from './containers/AddressesContainer'
 import Address from './containers/AddressContainer'
+import Cart from './containers/CartContainer'
 
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
@@ -65,6 +66,7 @@ render(
         <Route path="/" component={App}>
           <IndexRoute component={Products}/>
           <Route path="product/:product" component={Product}/>
+          <Route path="cart" component={Cart}/>
           <Route path="user" component={UserIsAuthenticated(User)}/>
           <Route path="addresses" component={UserIsAuthenticated(Addresses)}/>
           <Route path="address" component={UserIsAuthenticated(Address)}/>

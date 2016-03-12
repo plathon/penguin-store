@@ -27,7 +27,7 @@ export default class ProductsListComponent extends Component {
                   <h3 className="is-text-centered is-marginless">$ {product.price}</h3>
                 </Content>
                 <Control>
-                  <Button is-primary>Add To Card</Button>
+                  <Button type="button" is-primary onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
                   <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
                 </Control>
               </CardContent>

@@ -59,3 +59,11 @@ export const ADDRESS_INSERT_FAILED              = 'ADDRESS_INSERT_FAILED'
 export const START_ADDRESS_REMOVE               = 'START_ADDRESS_REMOVE'
 export const ADDRESS_REMOVED_SUCCESSFULLY       = 'ADDRESS_REMOVED_SUCCESSFULLY'
 export const ADDRESS_REMOVE_FAILED              = 'ADDRESS_REMOVE_FAILED'
+
+/**
+* Cart Actions
+**/
+
+export const ADD_PRODUCT_TO_CART                = 'ADD_PRODUCT_TO_CART'
+export const REMOVE_PRODUCT_TO_CART             = 'REMOVE_PRODUCT_TO_CART'
+export const UPDATE_PRODUCT_QTY_ON_CART         = 'UPDATE_PRODUCT_QTY_ON_CART'

@@ -27,7 +27,8 @@ export default class ProductsPageComponent extends Component {
             </Column>
           </Columns>
 
-          <ProductsList products={this.props.products} />          
+          <ProductsList products={this.props.products}
+                        insertProductToCart={this.props.insertProductToCart}/>          
 
           <div className="is-text-centered">
             <Button is-primary is-large>Load More</Button>
