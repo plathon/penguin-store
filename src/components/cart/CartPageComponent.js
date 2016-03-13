@@ -16,7 +16,7 @@ class CartPageComponent extends Component {
             <Column is-10 is-offset-1>
               <h1 className="title">
                 Cart
-                <Button type="button" is-pulled-right>Clear Cart</Button>
+                <Button type="button" is-pulled-right onClick={this.props.emptyCart.bind(this)}>Clear Cart</Button>
               </h1>
             </Column>
           </Columns>
@@ -36,18 +36,20 @@ class CartPageComponent extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Misty Abbott</td>
-                    <td>Bass Guitar</td>
-                    <td>Bass Guitar</td>
-                    <td><input className="input" type="number" value="1"/></td>
-                    <td>Bass Guitar</td>
-                    <td className="table-link table-icon">
-                      <a href="#">
-                        <i className="fa fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  {this.props.cartItems.map((item, i) =>
+                    <tr key={i}>
+                      <td>{item.name}</td>
+                      <td>{item.name}</td>
+                      <td>${item.price}</td>
+                      <td><input className="input" type="number" value={item.quantity} onChange={(e) => { this.props.updateCartProduct(i, e.target.value) }}/></td>
+                      <td>${item.price * item.quantity}</td>
+                      <td className="table-link table-icon">
+                        <Button onClick={this.props.removeCartProduct.bind(this, i)}>
+                          <i className="fa fa-trash"></i>
+                        </Button>
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
 
@@ -56,7 +58,7 @@ class CartPageComponent extends Component {
 
           <Columns>
             <Column is-5 is-offset-1>
-              <h3 className="title">Total: $200</h3>
+              <h3 className="title">Total: ${this.props.cartTotal}</h3>
             </Column>
             <Column is-5>
               <Button is-success is-pulled-right is-large>Finish</Button>
