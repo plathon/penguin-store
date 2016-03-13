@@ -19,6 +19,7 @@ import User from './containers/UserContainer'
 import Addresses from './containers/AddressesContainer'
 import Address from './containers/AddressContainer'
 import Cart from './containers/CartContainer'
+import Checkout from './containers/CheckoutContainer'
 
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
@@ -70,6 +71,7 @@ render(
           <Route path="user" component={UserIsAuthenticated(User)}/>
           <Route path="addresses" component={UserIsAuthenticated(Addresses)}/>
           <Route path="address" component={UserIsAuthenticated(Address)}/>
+          <Route path="checkout" component={UserIsAuthenticated(Checkout)}/>
         </Route>
         <Route path="admin">
           <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>

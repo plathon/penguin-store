@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 import Container from '../../template/src/components/Container'
 import Section from '../../template/src/components/Section'
@@ -61,7 +62,8 @@ class CartPageComponent extends Component {
               <h3 className="title">Total: ${this.props.cartTotal}</h3>
             </Column>
             <Column is-5>
-              <Button is-success is-pulled-right is-large>Finish</Button>
+              <Link className="button is-success is-pulled-right is-large"
+                    to="checkout">Finish</Link>
             </Column>
           </Columns>
 
