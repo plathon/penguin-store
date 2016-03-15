@@ -68,3 +68,11 @@ export const ADD_PRODUCT_TO_CART                = 'ADD_PRODUCT_TO_CART'
 export const REMOVE_PRODUCT_TO_CART             = 'REMOVE_PRODUCT_TO_CART'
 export const UPDATE_PRODUCT_QTY_ON_CART         = 'UPDATE_PRODUCT_QTY_ON_CART'
 export const EMPTY_CART                         = 'EMPTY_CART'
+
+/**
+* Order Actions
+**/
+
+export const START_ORDER_CREATE                 = 'START_ORDER_CREATE'
+export const ORDER_CREATED_SUCCESSFULLY         = 'ORDER_CREATED_SUCCESSFULLY'
+export const ORDER_CREATE_FAILED                = 'ORDER_CREATE_FAILED'

@@ -130,7 +130,13 @@ class CheckoutPageComponent extends Component {
 
           <Columns>
             <Column is-10 is-offset-1>
-              <Button is-success is-large is-fullwidth>Checkout</Button>
+              <Button type="button"
+                      is-success
+                      is-large
+                      is-fullwidth
+                      is-loading={this.props.isLoading}
+                      is-disabled={this.props.isLoading}
+                      onClick={this.props.checkout.bind(this, this.props.cartItems, {})}>Checkout</Button>
             </Column>
           </Columns>
 
