@@ -24,7 +24,7 @@ export default class ProductsListComponent extends Component {
                     <Link className="title is-5" to={`product/${i}`}>{product.name}</Link>
                   </p>
                   <p className="is-text-centered">{product.description}</p>
-                  <h3 className="is-text-centered is-marginless">$ {product.price}</h3>
+                  <h3 className="is-text-centered is-marginless">${product.price}</h3>
                 </Content>
                 <Control>
                   <Button type="button" is-primary onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
