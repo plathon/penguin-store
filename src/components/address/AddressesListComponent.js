@@ -16,12 +16,12 @@ export default class AddressListComponent extends Component {
           {this.props.addresses.map((address, i) =>
             <tr key={i}>
               <th>
-                <string>Name: </string>{address.name} <string>Phone: </string>{address.phone}<br/>
-                {address.address_line_one}<br/>
-                {address.address_line_two}<br/>
-                {address.city}/{address.state}<br/>
-                {address.country}<br/>
-                {address.zip}
+                Name: <strong>{address.name}</strong> Phone: <strong>{address.phone}</strong><br/>
+                <strong>{address.address_line_one}</strong><br/>
+                <strong>{address.address_line_two}</strong><br/>
+                <strong>{address.city}/{address.state}</strong><br/>
+                <strong>{address.country}</strong><br/>
+                <strong>{address.zip}</strong>
               </th>
               <th>
                 <Button type="button"

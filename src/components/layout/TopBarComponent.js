@@ -26,6 +26,9 @@ export default function TopBarComponent (props) {
                 <Link to="cart" className="is-active">Cart</Link>
               </span>
               <span className="header-item">
+                <Link to="orders" className="is-active">My orders</Link>
+              </span>
+              <span className="header-item">
                 <Link to="addresses" className="is-active">My Addresses</Link>
               </span>
               <span className="header-item">

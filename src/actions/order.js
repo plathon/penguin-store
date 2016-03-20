@@ -6,11 +6,11 @@ import { START_ORDER_CREATE,
 * Create Order
 **/
 
-export function checkout (items, address) {
+export function checkout (items, address, total) {
   return (dispatch) => {
     dispatch(startOrderCreate())
     setTimeout(() => {
-      dispatch(orderCreatedSuccessFully(items, address))
+      dispatch(orderCreatedSuccessFully(items, address, total))
      }, 1000)
   }
 }
@@ -23,8 +23,17 @@ function startOrderCreate () {
   return { type: START_ORDER_CREATE }
 }
 
-function orderCreatedSuccessFully (items, address) {
-  return { type: ORDER_CREATED_SUCCESSFULLY, payload: { items: items, address: address} }
+function orderCreatedSuccessFully (items, address, total) {
+  return { type: ORDER_CREATED_SUCCESSFULLY, payload: {
+    products: items,
+    address: address,
+    tax: 0,
+    shipping: 0,
+    discount: 0,
+    subtotal: total,
+    total: total
+    }
+  }
 }
 
 function orderCreateFailed () {

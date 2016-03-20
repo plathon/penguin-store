@@ -19,6 +19,7 @@ import User from './containers/UserContainer'
 import Addresses from './containers/AddressesContainer'
 import Address from './containers/AddressContainer'
 import Cart from './containers/CartContainer'
+import Orders from './containers/OrdersContainer'
 import Checkout from './containers/CheckoutContainer'
 
 import ProductADM from './containers/admin/ProductADMContainer'
@@ -71,6 +72,7 @@ render(
           <Route path="user" component={UserIsAuthenticated(User)}/>
           <Route path="addresses" component={UserIsAuthenticated(Addresses)}/>
           <Route path="address" component={UserIsAuthenticated(Address)}/>
+          <Route path="orders" component={UserIsAuthenticated(Orders)}/>
           <Route path="checkout" component={UserIsAuthenticated(Checkout)}/>
         </Route>
         <Route path="admin">
