@@ -1,6 +1,8 @@
 import { START_ORDER_CREATE,
          ORDER_CREATED_SUCCESSFULLY,
          ORDER_CREATE_FAILED } from '../constants/ActionTypes'
+import { browserHistory } from 'react-router'
+import alertify from 'alertify.js'
 
 /**
 * Create Order
@@ -11,6 +13,8 @@ export function checkout (items, address, total) {
     dispatch(startOrderCreate())
     setTimeout(() => {
       dispatch(orderCreatedSuccessFully(items, address, total))
+      alertify.logPosition("top right").success('purchase completed successfully')
+      browserHistory.push('/orders')
      }, 1000)
   }
 }
