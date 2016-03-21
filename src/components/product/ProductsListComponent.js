@@ -28,6 +28,13 @@ export default class ProductsListComponent extends Component {
                 </Content>
                 <Control>
                   <Button type="button" is-primary onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
+
+                  <Button type="button"
+                          is-danger
+                          is-outlined
+                          is-pulled-right
+                          onClick={this.props.removeProduct.bind(this, i)}>Delete</Button>
+
                   <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
                 </Control>
               </CardContent>

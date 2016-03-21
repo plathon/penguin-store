@@ -34,6 +34,9 @@ export const LOAD_PRODUCT                       = 'LOAD_PRODUCT'
 export const START_PRODUCT_UPDATE               = 'START_PRODUCT_UPDATE'
 export const PRODUCT_UPDATED_SUCCESSFULLY       = 'PRODUCT_UPDATED_SUCCESSFULLY'
 export const PRODUCT_UPDATE_FAILED              = 'PRODUCT_UPDATE_FAILED'
+export const START_PRODUCT_REMOVE               = 'START_PRODUCT_REMOVE'
+export const PRODUCT_REMOVED_SUCCESSFULLY       = 'PRODUCT_REMOVED_SUCCESSFULLY'
+export const PRODUCT_REMOVE_FAILED              = 'PRODUCT_REMOVE_FAILED'
 
 /**
 * Categories Actions

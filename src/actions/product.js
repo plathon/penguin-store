@@ -11,7 +11,10 @@ import { START_PRODUCTS_RETRIEVE,
          LOAD_PRODUCT,
          START_PRODUCT_UPDATE,
          PRODUCT_UPDATED_SUCCESSFULLY,
-         PRODUCT_UPDATE_FAILED } from '../constants/ActionTypes'
+         PRODUCT_UPDATE_FAILED,
+         START_PRODUCT_REMOVE,
+         PRODUCT_REMOVED_SUCCESSFULLY,
+         PRODUCT_REMOVE_FAILED } from '../constants/ActionTypes'
 
 /**
 * Insert product
@@ -38,6 +41,19 @@ export function updateProduct (product, index) {
       dispatch(productUpdatedSuccessfully(product, index))
       browserHistory.push('/')
      }, 1000)
+  }
+}
+
+/**
+* Remove product
+**/
+
+export function removeProduct (index) {
+  return (dispatch) => {
+    dispatch(startProductRemove())
+    setTimeout(() => {
+      dispatch(productRemovedSuccessfully(index))
+    }, 1000)
   }
 }
 
@@ -89,4 +105,20 @@ function productUpdateFailed () {
 
 function productUpdatedSuccessfully (product, index) {
   return { type: PRODUCT_UPDATED_SUCCESSFULLY, payload: { product: product, index: index } }
+}
+
+/**
+* Remove product actions
+**/
+
+function startProductRemove () {
+  return { type: START_PRODUCT_REMOVE }
+}
+
+function productRemovedSuccessfully (index) {
+  return { type: PRODUCT_REMOVED_SUCCESSFULLY, payload: index }
+}
+
+function productRemoveFailed () {
+  return { type: PRODUCT_REMOVE_FAILED }
 }

@@ -28,7 +28,8 @@ export default class ProductsPageComponent extends Component {
           </Columns>
 
           <ProductsList products={this.props.products}
-                        insertProductToCart={this.props.insertProductToCart}/>          
+                        insertProductToCart={this.props.insertProductToCart}
+                        removeProduct={this.props.removeProduct}/>          
 
           <div className="is-text-centered">
             <Button is-primary is-large>Load More</Button>

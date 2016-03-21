@@ -7,7 +7,10 @@ import { START_PRODUCTS_RETRIEVE,
          LOAD_PRODUCT,
          START_PRODUCT_UPDATE,
          PRODUCT_UPDATED_SUCCESSFULLY,
-         PRODUCT_UPDATE_FAILED } from '../constants/ActionTypes'
+         PRODUCT_UPDATE_FAILED,
+         START_PRODUCT_REMOVE,
+         PRODUCT_REMOVED_SUCCESSFULLY,
+         PRODUCT_REMOVE_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   data: {},
@@ -43,6 +46,20 @@ export default (state = initialState, action) => {
 
     case PRODUCT_UPDATE_FAILED:
       return { ...sate, is_loading: false }
+
+    case START_PRODUCT_REMOVE:
+      return state
+
+    case PRODUCT_REMOVED_SUCCESSFULLY:
+      return { ...state,
+               items: [
+                 ...state.items.slice(0, action.payload),
+                 ...state.items.slice(action.payload + 1)
+               ],
+               is_loading: false }
+
+    case PRODUCT_REMOVE_FAILED:
+      return state
 
     default:
       return state
