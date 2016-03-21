@@ -11,6 +11,38 @@ import Control from '../../template/src/components/Control'
 import Button from '../../template/src/components/Button'
 
 export default class ProductsListComponent extends Component {
+
+  constructor (props) {
+    super(props)
+    this.renderControlButtons = this.renderControlButtons.bind(this)
+  }
+
+  renderControlButtons (product, i) {
+    if ( this.props.userIsAdmin ) {
+      return (
+        <Control>
+          <Button type="button" is-primary onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
+          <Button type="button"
+                  is-danger
+                  is-outlined
+                  is-pulled-right
+                  onClick={this.props.removeProduct.bind(this, i)}>Delete</Button>
+          <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
+        </Control>
+      )
+    } else {
+      return (
+        <Control>
+          <Button type="button"
+                  is-primary
+                  is-fullwidth
+                  onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
+
+        </Control>
+      )
+    }
+  }
+
   render () {
     return (
       <Columns is-multiline is-centered>
@@ -26,17 +58,9 @@ export default class ProductsListComponent extends Component {
                   <p className="is-text-centered">{product.description}</p>
                   <h3 className="is-text-centered is-marginless">${product.price}</h3>
                 </Content>
-                <Control>
-                  <Button type="button" is-primary onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
 
-                  <Button type="button"
-                          is-danger
-                          is-outlined
-                          is-pulled-right
-                          onClick={this.props.removeProduct.bind(this, i)}>Delete</Button>
+                {this.renderControlButtons(product, i)}
 
-                  <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
-                </Control>
               </CardContent>
             </Card>
           </Column>

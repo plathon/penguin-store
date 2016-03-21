@@ -11,13 +11,17 @@ class ProductsContainer extends Component {
   render () {
     return <ProductsPage products={this.props.products}
                          insertProductToCart={this.props.insertProductToCart}
-                         removeProduct={this.props.removeProduct}/>
+                         removeProduct={this.props.removeProduct}
+                         userIsAdmin={(this.props.userType == "admin")}/>
   }
 
 }
 
 function mapStateToProps (state) {
-  return { products: state.product.items }
+  return {
+    products: state.product.items,
+    userType: state.user.data.type
+  }
 }
 
 function mapDispatchToProps (dispatch) {

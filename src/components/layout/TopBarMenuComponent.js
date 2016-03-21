@@ -9,7 +9,7 @@ export default function TopBarMenuComponent (props) {
           <Link to="/" className="is-active">Home</Link>
         </span>
         <span className="header-item">
-          <Link to="cart" className="is-active">Cart</Link>
+          <Link to="cart" className="is-active">My Shopcart</Link>
         </span>
         <span className="header-item">
           <Link to="orders" className="is-active">My orders</Link>
@@ -26,6 +26,9 @@ export default function TopBarMenuComponent (props) {
   } else {
     return (
       <div className="header-right header-menu">
+        <span className="header-item">
+          <Link to="cart" className="is-active">My Shopcart</Link>
+        </span>
         <span className="header-item">
           <Link to="signin" className="button is-primary is-inverted">Sign In</Link>
         </span>
