@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TopBarMenu from './TopBarMenuComponent'
+import TopBarCategory from './TopBarCategoryComponent'
 
 export default function TopBarComponent (props) {
   return (
@@ -37,18 +38,8 @@ export default function TopBarComponent (props) {
         </div>
       </div>
 
-      <div className="hero-footer">
-        <nav className="tabs">
-          <div className="container">
-            <ul>
-              <li className="is-active"><a href="#">All</a></li>
-              <li><a href="#">Category one</a></li>
-              <li><a href="#">Category two</a></li>
-              <li><a href="#">Category three</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+      <TopBarCategory categories={props.categories}/>
+
     </section>
   )
 }

@@ -14,7 +14,8 @@ class App extends Component {
     return (
       <div>
         <TopBar logoutUser={this.props.logoutUser}
-                user={this.props.user}/>
+                user={this.props.user}
+                categories={this.props.categories}/>
         {this.props.children}
         <Footer/>
       </div>
@@ -28,7 +29,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user.data }
+  return {
+    user: state.user.data,
+    categories: state.category.items
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

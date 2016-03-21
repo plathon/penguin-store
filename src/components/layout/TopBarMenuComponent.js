@@ -20,17 +20,14 @@ export default function TopBarMenuComponent (props) {
         <span className="header-item">
           <Link to="user" className="is-active">My account</Link>
         </span>
-        <span className="header-item">
-          <Link to="signin" className="button is-primary is-inverted">Sign In</Link>
-        </span>
-        <span className="header-item"><a onClick={props.logoutUser}>Logout</a></span>
+        <span className="header-item"><a className="button is-primary is-inverted" onClick={props.logoutUser}>Logout</a></span>
       </div>
     )
   } else {
     return (
       <div className="header-right header-menu">
         <span className="header-item">
-          <Link to="signin" className="button is-primary is-inverted">Sign In</Link>
+          <Link to="signin" className="button is-primary is-inverted is-outlined">Sign In</Link>
         </span>
       </div>
     )
