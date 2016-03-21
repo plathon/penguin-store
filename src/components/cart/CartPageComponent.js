@@ -7,51 +7,9 @@ import Columns from '../../template/src/components/Columns'
 import Column from '../../template/src/components/Column'
 import Button from '../../template/src/components/Button'
 
+import CartListItems from './CartListItemsComponent'
+
 class CartPageComponent extends Component {
-
-  constructor (props) {
-    super(props)
-    this.renderCartItemsList = this.renderCartItemsList.bind(this)
-  }
-
-  renderCartItemsList () {
-    let emptyCartLabel = (!this.props.cartItems.length) ?
-                         (<h1 className="subtitle is-4 is-text-centered">You shopping cart is empty :(</h1>) :
-                         ''
-    return (
-      <div>
-        <table className="table is-bordered">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Name</th>
-              <th>Unit Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.cartItems.map((item, i) =>
-              <tr key={i}>
-                <td>{item.name}</td>
-                <td>{item.name}</td>
-                <td>${item.price}</td>
-                <td><input className="input" type="number" value={item.quantity} onChange={(e) => { this.props.updateCartProduct(i, e.target.value) }}/></td>
-                <td>${item.price * item.quantity}</td>
-                <td className="table-link table-icon">
-                  <Button onClick={this.props.removeCartProduct.bind(this, i)}>
-                    <i className="fa fa-trash"></i>
-                  </Button>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        {emptyCartLabel}
-      </div>
-    )
-  }
 
   render () {
     return (
@@ -62,14 +20,18 @@ class CartPageComponent extends Component {
             <Column is-10 is-offset-1>
               <h1 className="title">
                 Cart
-                <Button type="button" is-pulled-right onClick={this.props.emptyCart.bind(this)}>Clear Cart</Button>
+                <Button type="button"
+                        is-pulled-right
+                        is-disabled={!this.props.cartItems.length}
+                        onClick={this.props.emptyCart.bind(this)}>Clear Cart</Button>
               </h1>
             </Column>
           </Columns>
 
           <Columns>
             <Column is-10 is-offset-1>
-              {this.renderCartItemsList()}
+              <CartListItems cartItems={this.props.cartItems}
+                             removeCartProduct={this.props.removeCartProduct}/>
             </Column>
           </Columns>
 
