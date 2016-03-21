@@ -3,37 +3,46 @@ import React, { Component } from 'react'
 import Button from '../../template/src/components/Button'
 
 export default class AddressListComponent extends Component {
+
+  renderEmptylabel (addresses) {
+    if (!addresses.length)
+      return <h1 className="subtitle is-4 is-text-centered">You don't have any address yet :(</h1>
+  }
+
   render () {
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Address</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.addresses.map((address, i) =>
-            <tr key={i}>
-              <th>
-                Name: <strong>{address.name}</strong> Phone: <strong>{address.phone}</strong><br/>
-                <strong>{address.address_line_one}</strong><br/>
-                <strong>{address.address_line_two}</strong><br/>
-                <strong>{address.city}/{address.state}</strong><br/>
-                <strong>{address.country}</strong><br/>
-                <strong>{address.zip}</strong>
-              </th>
-              <th>
-                <Button type="button"
-                        is-pulled-right
-                        is-loading={this.props.isLoading}
-                        is-disabled={this.props.isLoading}
-                        onClick={this.props.removeAddress.bind(this, i)}>Delete</Button>
-              </th>
+      <div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th></th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {this.props.addresses.map((address, i) =>
+              <tr key={i}>
+                <th>
+                  Name: <strong>{address.name}</strong> Phone: <strong>{address.phone}</strong><br/>
+                  <strong>{address.address_line_one}</strong><br/>
+                  <strong>{address.address_line_two}</strong><br/>
+                  <strong>{address.city}/{address.state}</strong><br/>
+                  <strong>{address.country}</strong><br/>
+                  <strong>{address.zip}</strong>
+                </th>
+                <th>
+                  <Button type="button"
+                          is-pulled-right
+                          is-loading={this.props.isLoading}
+                          is-disabled={this.props.isLoading}
+                          onClick={this.props.removeAddress.bind(this, i)}>Delete</Button>
+                </th>
+              </tr>
+            )}
+          </tbody>
+        </table>
+        {this.renderEmptylabel(this.props.addresses)}
+      </div>
     )
   }
 }

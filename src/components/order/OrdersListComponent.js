@@ -4,6 +4,12 @@ import Columns from '../../template/src/components/Columns'
 import Column from '../../template/src/components/Column'
 
 class OrdersListComponent extends Component {
+
+  renderEmptyLabel (orders) {
+    if (!orders.length)
+      return <h1 className="subtitle is-4 is-text-centered">You don't have any order yet :(</h1>
+  }
+
   render () {
     return (
       <div>
@@ -64,6 +70,7 @@ class OrdersListComponent extends Component {
             </Columns>
           </div>
         )}
+        {this.renderEmptyLabel(this.props.orders)}
       </div>
     )
   }

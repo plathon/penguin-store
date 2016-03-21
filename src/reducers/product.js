@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
       return { ...sate, is_loading: false }
 
     case START_PRODUCT_REMOVE:
-      return state
+      return { ...state, is_loading: true }
 
     case PRODUCT_REMOVED_SUCCESSFULLY:
       return { ...state,
@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
                is_loading: false }
 
     case PRODUCT_REMOVE_FAILED:
-      return state
+      return { ...state, is_loading: false }
 
     default:
       return state

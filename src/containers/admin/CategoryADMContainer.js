@@ -17,6 +17,7 @@ class CategoryADMContainer extends Component {
 }
 
 function mapStateToProps (state) {
+  console.log(state)
   return {
     categories: state.category.items,
     isLoading: state.category.is_loading

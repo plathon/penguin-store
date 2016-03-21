@@ -55,6 +55,7 @@ export default class ProductsPageComponent extends Component {
           <ProductsList products={this.props.products}
                         insertProductToCart={this.props.insertProductToCart}
                         removeProduct={this.props.removeProduct}
+                        isLoading={this.props.isLoading}
                         userIsAdmin={this.props.userIsAdmin}/>
 
           <div className="is-text-centered">

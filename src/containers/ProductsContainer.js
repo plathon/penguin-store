@@ -12,6 +12,7 @@ class ProductsContainer extends Component {
     return <ProductsPage products={this.props.products}
                          insertProductToCart={this.props.insertProductToCart}
                          removeProduct={this.props.removeProduct}
+                         isLoading={this.props.isLoading}
                          userIsAdmin={(this.props.userType == "admin")}/>
   }
 
@@ -20,7 +21,8 @@ class ProductsContainer extends Component {
 function mapStateToProps (state) {
   return {
     products: state.product.items,
-    userType: state.user.data.type
+    userType: state.user.data.type,
+    isLoading: state.product.is_loading
   }
 }
 

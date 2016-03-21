@@ -26,6 +26,8 @@ export default class ProductsListComponent extends Component {
                   is-danger
                   is-outlined
                   is-pulled-right
+                  is-loading={this.props.isLoading}
+                  is-disabled={this.props.isLoading}
                   onClick={this.props.removeProduct.bind(this, i)}>Delete</Button>
           <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
         </Control>
