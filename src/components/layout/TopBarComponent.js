@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import TopBarMenu from './TopBarMenuComponent'
 
 export default function TopBarComponent (props) {
   return (
@@ -18,27 +18,10 @@ export default function TopBarComponent (props) {
               <span></span>
               <span></span>
             </span>
-            <div className="header-right header-menu">
-              <span className="header-item">
-                <Link to="/" className="is-active">Home</Link>
-              </span>
-              <span className="header-item">
-                <Link to="cart" className="is-active">Cart</Link>
-              </span>
-              <span className="header-item">
-                <Link to="orders" className="is-active">My orders</Link>
-              </span>
-              <span className="header-item">
-                <Link to="addresses" className="is-active">My Addresses</Link>
-              </span>
-              <span className="header-item">
-                <Link to="user" className="is-active">My account</Link>
-              </span>
-              <span className="header-item">
-                <Link to="signin" className="button is-primary is-inverted">Sign In</Link>
-              </span>
-              <span className="header-item"><a href="" onClick={props.logoutUser}>Logout</a></span>
-            </div>
+
+            <TopBarMenu user={props.user}
+                        logoutUser={props.logoutUser}/>
+
           </div>
         </header>
       </div>

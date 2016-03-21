@@ -13,7 +13,8 @@ class App extends Component {
   render () {
     return (
       <div>
-        <TopBar logoutUser={this.props.logoutUser}/>
+        <TopBar logoutUser={this.props.logoutUser}
+                user={this.props.user}/>
         {this.props.children}
         <Footer/>
       </div>
@@ -27,7 +28,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { token: state.user.token }
+  return { user: state.user.data }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
