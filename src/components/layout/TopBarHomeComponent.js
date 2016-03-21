@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import TopBarMenu from './TopBarMenuComponent'
+import TopBarCategory from './TopBarCategoryComponent'
 
-export default function TopBarComponent (props) {
+export default function TopBarHomeComponent (props) {
   return (
     <section className="hero is-primary is-medium">
 
@@ -25,6 +26,19 @@ export default function TopBarComponent (props) {
           </div>
         </header>
       </div>
+
+      <div className="hero-content">
+        <div className="container">
+          <h1 className="title">
+            My Store
+          </h1>
+          <h2 className="subtitle">
+            50% Off all night long
+          </h2>
+        </div>
+      </div>
+
+      <TopBarCategory categories={props.categories}/>
 
     </section>
   )

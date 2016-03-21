@@ -10,6 +10,7 @@ import { UserAuthWrapper } from 'redux-auth-wrapper'
 import * as reducers from './reducers'
 
 import App from './components/App'
+import Home from './components/Home'
 import Auth from './containers/AuthContainer'
 import Resgister from './containers/RegisterContainer'
 import ResetPassword from './containers/ResetPasswordContainer'
@@ -65,8 +66,10 @@ render(
         <Route path="signin" component={Auth}/>
         <Route path="signup" component={Resgister}/>
         <Route path="reset-password" component={ResetPassword}/>
-        <Route path="/" component={App}>
+        <Route path="/" component={Home}>
           <IndexRoute component={Products}/>
+        </Route>
+        <Route path="/" component={App}>
           <Route path="product/:product" component={Product}/>
           <Route path="cart" component={Cart}/>
           <Route path="user" component={UserIsAuthenticated(User)}/>
