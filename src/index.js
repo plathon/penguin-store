@@ -25,6 +25,7 @@ import Checkout from './containers/CheckoutContainer'
 
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
+import PaymentADM from './containers/admin/PaymentADMContainer'
 
 const history = browserHistory
 const synchronizedHistory = syncHistory(history)
@@ -82,6 +83,9 @@ render(
           <Route path="products/new" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
           <Route path="products/:product/edit" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
           <Route path="categories" component={UserIsAuthenticated(UserIsAdmin(CategoryADM))}/>
+          <Route path="settings">
+            <Route path="payment" component={UserIsAuthenticated(UserIsAdmin(PaymentADM))}/>
+          </Route>
         </Route>
       </Router>
     </Provider>
