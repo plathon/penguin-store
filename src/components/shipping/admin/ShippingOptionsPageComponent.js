@@ -6,9 +6,9 @@ import Section from '../../../template/src/components/Section'
 import Columns from '../../../template/src/components/Columns'
 import Column from '../../../template/src/components/Column'
 
-import ShippingSettingsList from './ShippingSettingsListComponent'
+import ShippingOptionsList from './ShippingOptionsListComponent'
 
-class ShippingSettingsPageComponent extends Component {
+class ShippingOptionsPageComponent extends Component {
   render () {
     return (
       <Section>
@@ -18,14 +18,16 @@ class ShippingSettingsPageComponent extends Component {
             <Column is-10 is-offset-1>
               <h1 className="title">
                 Shipping Settings
-                <Link className="button is-primary is-pulled-right" to="address">Add Shipping Option</Link>
+                <Link className="button is-primary is-pulled-right" to="/admin/settings/shipping-options/new">Add Shipping Option</Link>
               </h1>
             </Column>
           </Columns>
 
           <Columns>
             <Column is-10 is-offset-1>
-              <ShippingSettingsList shippingOptions={this.props.shippingOptions}/>
+              <ShippingOptionsList shippingOptions={this.props.shippingOptions}
+                                   removeShippingOption={this.props.removeShippingOption}
+                                   isLoading={this.props.isLoading}/>
             </Column>
           </Columns>
 
@@ -35,4 +37,4 @@ class ShippingSettingsPageComponent extends Component {
   }
 }
 
-export default ShippingSettingsPageComponent
+export default ShippingOptionsPageComponent

@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { insertShippingOption, updateShippingOption } from '../../actions/shipping'
 
-import ShippingSettingsPage from '../../components/shipping/admin/ShippingSettingsPageComponent'
+import ShippingPage from '../../components/shipping/admin/ShippingPageComponent'
 
 class ShippingADMContainer extends Component {
   render () {
-    return <ShippingSettingsPage shippingOptions={this.props.shippingOptions}/>
+    return <ShippingPage updateShippingOption={this.props.updateShippingOption}
+                         insertShippingOption={this.props.insertShippingOption}
+                         shippingIndex={this.props.params.shipping}
+                         isLoading={this.props.isLoading}/>
   }
 }
 
-function mapStateToProps (state) {
-  return { shippingOptions: state.shipping.items }
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators( {
+    insertShippingOption,
+    updateShippingOption
+  }, dispatch )
 }
 
-export default connect(mapStateToProps, null)(ShippingADMContainer)
+function mapStateToProps (state) {
+  return { isLoading: state.shipping.is_loading }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShippingADMContainer)

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 import Button from '../../../template/src/components/Button'
+import Control from '../../../template/src/components/Control'
 
-class ShippingSettingsListComponent extends Component {
+class ShippingOptionsListComponent extends Component {
 
   renderEmptylabel (shippingOptions) {
     if (!shippingOptions.length)
@@ -23,11 +25,17 @@ class ShippingSettingsListComponent extends Component {
             {this.props.shippingOptions.map((shippingOption, i) =>
               <tr key={i}>
                 <th>
-
+                  {shippingOption.title}
                 </th>
                 <th>
-                  <Button type="button"
-                          is-pulled-right>Delete</Button>
+                  <Control is-horizontal is-pulled-right>
+                    <Link className="button" to={`/admin/settings/shipping-options/${i}/edit`}>Edit</Link>
+                    <Button type="button"
+                            is-loading={this.props.isLoading}
+                            is-disabled={this.props.isLoading}
+                            is-pulled-right
+                            onClick={this.props.removeShippingOption.bind(this, i)}>Delete</Button>
+                  </Control>
                 </th>
               </tr>
             )}
@@ -39,4 +47,4 @@ class ShippingSettingsListComponent extends Component {
   }
 }
 
-export default ShippingSettingsListComponent
+export default ShippingOptionsListComponent

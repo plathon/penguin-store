@@ -26,6 +26,7 @@ import Checkout from './containers/CheckoutContainer'
 import ProductADM from './containers/admin/ProductADMContainer'
 import CategoryADM from './containers/admin/CategoryADMContainer'
 import PaymentADM from './containers/admin/PaymentADMContainer'
+import ShippingOptionsADM from './containers/admin/ShippingOptionsADMContainer'
 import ShippingADM from './containers/admin/ShippingADMContainer'
 
 const history = browserHistory
@@ -86,7 +87,9 @@ render(
           <Route path="categories" component={UserIsAuthenticated(UserIsAdmin(CategoryADM))}/>
           <Route path="settings">
             <Route path="payment" component={UserIsAuthenticated(UserIsAdmin(PaymentADM))}/>
-            <Route path="shipping" component={UserIsAuthenticated(UserIsAdmin(ShippingADM))}/>
+            <Route path="shipping-options" component={UserIsAuthenticated(UserIsAdmin(ShippingOptionsADM))}/>
+            <Route path="shipping-options/new" component={UserIsAuthenticated(UserIsAdmin(ShippingADM))}/>
+            <Route path="shipping-options/:shipping/edit" component={UserIsAuthenticated(UserIsAdmin(ShippingADM))}/>
           </Route>
         </Route>
       </Router>
