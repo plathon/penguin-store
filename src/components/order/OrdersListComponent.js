@@ -61,7 +61,7 @@ class OrdersListComponent extends Component {
               <Column is-5 is-offset-1>
                 <h3 className="subtitle is-3">Shipping</h3>
                 Name: <strong>{order.address.name}</strong> Phone: <strong>{order.address.phone}</strong><br/>
-              <strong>{order.address.address_line_one}</strong><br/>
+                <strong>{order.address.address_line_one}</strong><br/>
                 <strong>{order.address.address_line_two}</strong><br/>
                 <strong>{order.address.city}/{order.address.state}</strong><br/>
                 <strong>{order.address.country}</strong><br/>

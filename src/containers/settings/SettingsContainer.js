@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertSettings } from '../../actions/settings'
 
-import SettingsPage from '../../components/settings/admin/SettingsPageComponent'
+import SettingsPage from '../../components/settings/SettingsPageComponent'
 
 class SettingsContainer extends Component {
   render () {

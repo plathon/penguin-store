@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 
-import Input from '../../../template/src/components/Input'
-import Button from '../../../template/src/components/Button'
-import Control from '../../../template/src/components/Control'
+import Input from '../../template/src/components/Input'
+import Button from '../../template/src/components/Button'
+import Control from '../../template/src/components/Control'
 
 /**
 * validations
@@ -30,12 +30,7 @@ const validate = values => {
 * Component
 **/
 
-class PaymentSettingsFormComponent extends Component {
-
-  submit (data) {
-    console.log(data)
-  }
-
+class PaymentFormComponent extends Component {
   render () {
     const { fields: { email, token, apikey }, handleSubmit } = this.props
     return (
@@ -76,13 +71,13 @@ class PaymentSettingsFormComponent extends Component {
 
 }
 
-PaymentSettingsFormComponent = reduxForm({
+PaymentFormComponent = reduxForm({
   form: 'paymentSettings',
   fields: ['email', 'token', 'apikey'],
   validate
 },
 state => ({
   initialValues: state.payment.data
-}))(PaymentSettingsFormComponent)
+}))(PaymentFormComponent)
 
-export default PaymentSettingsFormComponent
+export default PaymentFormComponent

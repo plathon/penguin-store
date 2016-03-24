@@ -46,6 +46,7 @@ class CartPageComponent extends Component {
             <Column is-5 is-offset-1>
               <h3 className="title">Total: ${this.props.cartTotal}</h3>
             </Column>
+
             <Column is-5>
               <Control>
                 <Link className="button is-success is-large is-pulled-right"

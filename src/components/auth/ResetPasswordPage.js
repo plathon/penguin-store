@@ -14,6 +14,7 @@ class ResetPasswordPage extends Component {
     return (
       <Section>
         <Container>
+
           <Columns>
             <Column is-half is-offset-quarter>
               <ResetPasswordForm/>
@@ -26,6 +27,7 @@ class ResetPasswordPage extends Component {
               <Link to="signup">Don't have an account yet, Sign up now!</Link>
             </Column>
           </Columns>
+
         </Container>
       </Section>
     )

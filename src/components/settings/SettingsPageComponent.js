@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-import Container from '../../../template/src/components/Container'
-import Section from '../../../template/src/components/Section'
-import Columns from '../../../template/src/components/Columns'
-import Column from '../../../template/src/components/Column'
-import Icon from '../../../template/src/components/Icon'
+import Container from '../../template/src/components/Container'
+import Section from '../../template/src/components/Section'
+import Columns from '../../template/src/components/Columns'
+import Column from '../../template/src/components/Column'
+import Icon from '../../template/src/components/Icon'
 
 import SettingsForm from './SettingsFormComponent'
 

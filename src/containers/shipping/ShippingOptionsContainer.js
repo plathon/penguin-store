@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { removeShippingOption } from '../../actions/shipping'
 
-import ShippingOptionsPage from '../../components/shipping/admin/ShippingOptionsPageComponent'
+import ShippingOptionsPage from '../../components/shipping/ShippingOptionsPageComponent'
 
 class ShippingOptionsContainer extends Component {
   render () {

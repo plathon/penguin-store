@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 
-import Button from '../../../template/src/components/Button'
+import Button from '../../template/src/components/Button'
 
 /**
 * Validations

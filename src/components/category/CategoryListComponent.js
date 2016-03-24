@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Button from '../../../template/src/components/Button'
+import Button from '../../template/src/components/Button'
 
 export default class CategoryListComponent extends Component {
 

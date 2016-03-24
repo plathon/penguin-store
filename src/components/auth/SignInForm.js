@@ -5,6 +5,7 @@ import validator from 'validator'
 
 import Input from '../../template/src/components/Input'
 import Button from '../../template/src/components/Button'
+import Control from '../../template/src/components/Control'
 
 import SocialAuthButtons from './SocialAuthButtons'
 
@@ -58,14 +59,15 @@ class SignInForm extends Component {
                showError={password.touched && password.error}
                is-danger={password.touched && password.error}
                {...password} />
-        <p>
+
+        <Control>
           <Button type="submit"
                   is-primary
                   is-disabled={this.props.isLoding}
                   is-loading={this.props.isLoding}>Enter</Button>
 
           <Link to="reset-password" className="is-pulled-right">Forgot Password</Link>
-        </p><br/>
+        </Control><br/>
 
       <SocialAuthButtons />
 

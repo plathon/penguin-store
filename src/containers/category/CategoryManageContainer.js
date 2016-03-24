@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertCategory, removeCategory } from '../../actions/category'
 
-import CategoryPage from '../../components/category/admin/CategoryPageComponent'
+import CategoryPage from '../../components/category/CategoryPageComponent'
 
 class CategoryManageContainer extends Component {
   render () {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Button from '../../../template/src/components/Button'
-import Control from '../../../template/src/components/Control'
+import Button from '../../template/src/components/Button'
+import Control from '../../template/src/components/Control'
 
 class ShippingOptionsListComponent extends Component {
 

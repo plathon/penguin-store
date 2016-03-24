@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
-import { loadProduct } from '../../../actions/product'
+import { loadProduct } from '../../actions/product'
 
-import Input from '../../../template/src/components/Input'
-import Button from '../../../template/src/components/Button'
-import Textarea from '../../../template/src/components/Textarea'
-import Select from '../../../template/src/components/Select'
-import Checkbox from '../../../template/src/components/Checkbox'
+import Input from '../../template/src/components/Input'
+import Button from '../../template/src/components/Button'
+import Textarea from '../../template/src/components/Textarea'
+import Select from '../../template/src/components/Select'
+import Checkbox from '../../template/src/components/Checkbox'
 
 /**
 * Validations

@@ -14,6 +14,7 @@ class SignUpPage extends Component {
     return (
       <Section>
         <Container>
+
           <Columns>
             <Column is-half is-offset-quarter>
               <SignUpForm registerUser={this.props.registerUser}
@@ -26,6 +27,7 @@ class SignUpPage extends Component {
               <Link to="signin">Already have an account, Sign in now!</Link>
             </Column>
           </Columns>
+
         </Container>
       </Section>
     )

@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertPaymentSettings } from '../../actions/payment'
 
-import PaymentSettingsPage from '../../components/payment/admin/PaymentSettingsPageComponent'
+import PaymentPage from '../../components/payment/PaymentPageComponent'
 
 class PaymentManageContainer extends Component {
   render () {
-    return <PaymentSettingsPage insertPaymentSettings={this.props.insertPaymentSettings}
+    return <PaymentPage insertPaymentSettings={this.props.insertPaymentSettings}
                                 isLoading={this.props.isLoading}/>
   }
 }

@@ -14,6 +14,7 @@ export default class SignInPage extends Component {
     return (
       <Section>
         <Container>
+
           <Columns>
             <Column is-half is-offset-quarter>
               <SignInForm authenticateUser={this.props.authenticateUser}
@@ -26,6 +27,7 @@ export default class SignInPage extends Component {
               <Link to="signup">Don't have an account yet, Sign up now!</Link>
             </Column>
           </Columns>
+
         </Container>
       </Section>
     )

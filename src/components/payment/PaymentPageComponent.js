@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-import Container from '../../../template/src/components/Container'
-import Section from '../../../template/src/components/Section'
-import Columns from '../../../template/src/components/Columns'
-import Column from '../../../template/src/components/Column'
-import Icon from '../../../template/src/components/Icon'
+import Container from '../../template/src/components/Container'
+import Section from '../../template/src/components/Section'
+import Columns from '../../template/src/components/Columns'
+import Column from '../../template/src/components/Column'
+import Icon from '../../template/src/components/Icon'
 
-import PaymentSettingsForm from './PaymentSettingsFormComponent'
+import PaymentForm from './PaymentFormComponent'
 
-class PaymentSettingsPageComponent extends Component {
+class PaymentPageComponent extends Component {
   render () {
     return (
       <Section>
@@ -28,7 +28,7 @@ class PaymentSettingsPageComponent extends Component {
 
           <Columns>
             <Column is-10 is-offset-1>
-              <PaymentSettingsForm insertPaymentSettings={this.props.insertPaymentSettings}
+              <PaymentForm insertPaymentSettings={this.props.insertPaymentSettings}
                                    isLoading={this.props.isLoading}/>
             </Column>
           </Columns>
@@ -39,4 +39,4 @@ class PaymentSettingsPageComponent extends Component {
   }
 }
 
-export default PaymentSettingsPageComponent
+export default PaymentPageComponent

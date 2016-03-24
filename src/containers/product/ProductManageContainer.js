@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertProduct, updateProduct } from '../../actions/product'
 
-import ProductPage from '../../components/product/admin/ProductPage'
+import ProductManagePage from '../../components/product/ProductManagePageComponent'
 
 class ProductManageContainer extends Component {
   render () {
-    return <ProductPage isLoading={this.props.isLoading}
-                        insertProduct={this.props.insertProduct}
-                        updateProduct={this.props.updateProduct}
-                        productIndex={this.props.params.product}
-                        categories={this.props.categories}/>
+    return <ProductManagePage isLoading={this.props.isLoading}
+                              insertProduct={this.props.insertProduct}
+                              updateProduct={this.props.updateProduct}
+                              productIndex={this.props.params.product}
+                              categories={this.props.categories}/>
   }
 }
 
