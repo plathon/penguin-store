@@ -26,6 +26,9 @@ export default function TopBarMenuComponent (props) {
         <span className="header-item">
           <Link to="admin/settings/shipping-options" className="is-active">Shipping</Link>
         </span>
+        <span className="header-item">
+          <Link to="admin/settings" className="is-active">Settings</Link>
+        </span>
         <span className="header-item"><a className="button is-primary is-inverted is-outlined" onClick={props.logoutUser}>Logout</a></span>
       </div>
     )

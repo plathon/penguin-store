@@ -28,6 +28,7 @@ import CategoryADM from './containers/admin/CategoryADMContainer'
 import PaymentADM from './containers/admin/PaymentADMContainer'
 import ShippingOptionsADM from './containers/admin/ShippingOptionsADMContainer'
 import ShippingADM from './containers/admin/ShippingADMContainer'
+import Settings from './containers/admin/SettingsADMContainer'
 
 const history = browserHistory
 const synchronizedHistory = syncHistory(history)
@@ -86,6 +87,7 @@ render(
           <Route path="products/:product/edit" component={UserIsAuthenticated(UserIsAdmin(ProductADM))}/>
           <Route path="categories" component={UserIsAuthenticated(UserIsAdmin(CategoryADM))}/>
           <Route path="settings">
+            <IndexRoute component={UserIsAuthenticated(UserIsAdmin(Settings))}/>
             <Route path="payment" component={UserIsAuthenticated(UserIsAdmin(PaymentADM))}/>
             <Route path="shipping-options" component={UserIsAuthenticated(UserIsAdmin(ShippingOptionsADM))}/>
             <Route path="shipping-options/new" component={UserIsAuthenticated(UserIsAdmin(ShippingADM))}/>
