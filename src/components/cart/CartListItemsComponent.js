@@ -3,6 +3,7 @@ import React from 'react'
 import Button from '../../template/src/components/Button'
 
 export default function CartListItemsComponent (props) {
+  console.log(props)
   let emptyCartLabel = (!props.cartItems.length) ?
                        (<h1 className="subtitle is-4 is-text-centered">You shopping cart is empty :(</h1>) :
                        ''
@@ -25,10 +26,10 @@ export default function CartListItemsComponent (props) {
               <td>{item.name}</td>
               <td>{item.name}</td>
               <td>${item.price}</td>
-              <td><input className="input" type="number" value={item.quantity} onChange={(e) => { this.props.updateCartProduct(i, e.target.value) }}/></td>
+              <td><input className="input" type="number" value={item.quantity} onChange={ (e) => { props.updateCartProduct(i, e.target.value) } }/></td>
               <td>${item.price * item.quantity}</td>
               <td className="table-link table-icon">
-                <Button type="button" onClick={props.removeCartProduct.bind(this, i)}>
+                <Button type="button" onClick={ () => { props.removeCartProduct(i) } }>
                   <i className="fa fa-trash"></i>
                 </Button>
               </td>

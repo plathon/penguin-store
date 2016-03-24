@@ -37,7 +37,8 @@ class CartPageComponent extends Component {
           <Columns>
             <Column is-10 is-offset-1>
               <CartListItems cartItems={this.props.cartItems}
-                             removeCartProduct={this.props.removeCartProduct}/>
+                             removeCartProduct={this.props.removeCartProduct}
+                             updateCartProduct={this.props.updateCartProduct}/>
             </Column>
           </Columns>
 
