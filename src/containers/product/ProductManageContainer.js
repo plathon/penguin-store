@@ -5,7 +5,7 @@ import { insertProduct, updateProduct } from '../../actions/product'
 
 import ProductPage from '../../components/product/admin/ProductPage'
 
-class ProductADMContainer extends Component {
+class ProductManageContainer extends Component {
   render () {
     return <ProductPage isLoading={this.props.isLoading}
                         insertProduct={this.props.insertProduct}
@@ -26,4 +26,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductManageContainer)

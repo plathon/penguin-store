@@ -3,7 +3,6 @@ import React from 'react'
 import Button from '../../template/src/components/Button'
 
 export default function CartListItemsComponent (props) {
-  console.log(props)
   let emptyCartLabel = (!props.cartItems.length) ?
                        (<h1 className="subtitle is-4 is-text-centered">You shopping cart is empty :(</h1>) :
                        ''

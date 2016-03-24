@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import OrdersPage from '../components/order/OrdersPageComponent'
+import OrdersPage from '../../components/order/OrdersPageComponent'
 
 class OrdersComponent extends Component {
   render () {

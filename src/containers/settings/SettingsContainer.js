@@ -5,7 +5,7 @@ import { insertSettings } from '../../actions/settings'
 
 import SettingsPage from '../../components/settings/admin/SettingsPageComponent'
 
-class SettingsADMContainer extends Component {
+class SettingsContainer extends Component {
   render () {
     return <SettingsPage insertSettings={this.props.insertSettings}
                          isLoading={this.props.isLoading}/>
@@ -20,4 +20,4 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators( { insertSettings }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

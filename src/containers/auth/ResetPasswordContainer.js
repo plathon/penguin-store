@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ResetPasswordPage from '../components/auth/ResetPasswordPage'
+import ResetPasswordPage from '../../components/auth/ResetPasswordPage'
 
 class ResetPasswordContainer extends Component {
   render () {

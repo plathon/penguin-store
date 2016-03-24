@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { registerUser } from '../actions/user'
+import { registerUser } from '../../actions/user'
 
-import SignUpPage from '../components/auth/SignUpPage'
+import SignUpPage from '../../components/auth/SignUpPage'
 
 class RegisterContainer extends Component {
 

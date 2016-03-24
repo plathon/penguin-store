@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { changeUserData } from '../actions/user'
+import { changeUserData } from '../../actions/user'
 
-import UserPage from '../components/user/UserPageComponent'
+import UserPage from '../../components/user/UserPageComponent'
 
 class UserContainer extends Component {
   render () {

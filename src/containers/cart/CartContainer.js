@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { removeCartProduct, updateCartProduct, emptyCart } from '../actions/cart'
+import { removeCartProduct, updateCartProduct, emptyCart } from '../../actions/cart'
 
-import CartPage from '../components/cart/CartPageComponent'
+import CartPage from '../../components/cart/CartPageComponent'
 
 class CartComponent extends Component {
   render () {

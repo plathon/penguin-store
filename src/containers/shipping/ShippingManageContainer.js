@@ -5,7 +5,7 @@ import { insertShippingOption, updateShippingOption } from '../../actions/shippi
 
 import ShippingPage from '../../components/shipping/admin/ShippingPageComponent'
 
-class ShippingADMContainer extends Component {
+class ShippingManageContainer extends Component {
   render () {
     return <ShippingPage updateShippingOption={this.props.updateShippingOption}
                          insertShippingOption={this.props.insertShippingOption}
@@ -25,4 +25,4 @@ function mapStateToProps (state) {
   return { isLoading: state.shipping.is_loading }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShippingADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ShippingManageContainer)

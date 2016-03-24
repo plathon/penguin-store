@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { checkout } from '../actions/order'
+import { checkout } from '../../actions/order'
 
-import CheckoutPage from '../components/checkout/CheckoutPageComponent'
+import CheckoutPage from '../../components/checkout/CheckoutPageComponent'
 
 class CheckoutContainer extends Component {
   render () {

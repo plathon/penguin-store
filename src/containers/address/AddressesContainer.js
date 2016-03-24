@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { removeAddress } from '../actions/address'
+import { removeAddress } from '../../actions/address'
 
-import AddressesPage from '../components/address/AddressesPageComponent'
+import AddressesPage from '../../components/address/AddressesPageComponent'
 
-class AddressContainer extends Component {
+class AddressesContainer extends Component {
   render () {
     return <AddressesPage addresses={this.props.addresses}
                           removeAddress={this.props.removeAddress}
@@ -24,4 +24,4 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators( { removeAddress }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddressContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AddressesContainer)

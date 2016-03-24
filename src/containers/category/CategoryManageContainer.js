@@ -5,7 +5,7 @@ import { insertCategory, removeCategory } from '../../actions/category'
 
 import CategoryPage from '../../components/category/admin/CategoryPageComponent'
 
-class CategoryADMContainer extends Component {
+class CategoryManageContainer extends Component {
   render () {
     return (
       <CategoryPage categories={this.props.categories}
@@ -27,4 +27,4 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators( { insertCategory, removeCategory }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryManageContainer)

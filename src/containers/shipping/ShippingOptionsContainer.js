@@ -5,7 +5,7 @@ import { removeShippingOption } from '../../actions/shipping'
 
 import ShippingOptionsPage from '../../components/shipping/admin/ShippingOptionsPageComponent'
 
-class ShippingOptionsADMContainer extends Component {
+class ShippingOptionsContainer extends Component {
   render () {
     return <ShippingOptionsPage shippingOptions={this.props.shippingOptions}
                                 removeShippingOption={this.props.removeShippingOption}
@@ -24,4 +24,4 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators( { removeShippingOption }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShippingOptionsADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ShippingOptionsContainer)

@@ -5,7 +5,7 @@ import { insertPaymentSettings } from '../../actions/payment'
 
 import PaymentSettingsPage from '../../components/payment/admin/PaymentSettingsPageComponent'
 
-class PaymentADMContainer extends Component {
+class PaymentManageContainer extends Component {
   render () {
     return <PaymentSettingsPage insertPaymentSettings={this.props.insertPaymentSettings}
                                 isLoading={this.props.isLoading}/>
@@ -20,4 +20,4 @@ function mapStateToProps (state) {
   return { isLoading: state.payment.is_loading }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentADMContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentManageContainer)

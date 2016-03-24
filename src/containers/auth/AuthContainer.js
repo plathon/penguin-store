@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { authenticateUser } from '../actions/user'
+import { authenticateUser } from '../../actions/user'
 
-import SignInPage from '../components/auth/SignInPage'
+import SignInPage from '../../components/auth/SignInPage'
 
 class AuthContainer extends Component {
 

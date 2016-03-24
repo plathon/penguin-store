@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadProduct } from '../actions/product'
+import { loadProduct } from '../../actions/product'
 
-import ProductPage from '../components/product/ProductPageComponent'
+import ProductPage from '../../components/product/ProductPageComponent'
 
 class ProductComponent extends Component {
   render () {

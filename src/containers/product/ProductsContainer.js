@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { insertProductToCart } from '../actions/cart'
-import { removeProduct } from '../actions/product'
+import { insertProductToCart } from '../../actions/cart'
+import { removeProduct } from '../../actions/product'
 
-import ProductsPage from '../components/product/ProductsPageComponent'
+import ProductsPage from '../../components/product/ProductsPageComponent'
 
 class ProductsContainer extends Component {
 
