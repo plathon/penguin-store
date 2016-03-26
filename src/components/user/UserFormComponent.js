@@ -4,6 +4,7 @@ import validator from 'validator'
 
 import Input from '../../template/src/components/Input'
 import Button from '../../template/src/components/Button'
+import Control from '../../template/src/components/Control'
 
 /**
 * Validations
@@ -27,16 +28,6 @@ const validate = values => {
   }
   if (values.email && !validator.isEmail(values.email)) {
     errors.email = 'Type a valid email address'
-  }
-  if (values.password && values.password.length < 3) {
-    errors.password = 'very short password'
-  }
-  if (values.password && values.password.length > 45) {
-    errors.password = 'very long password'
-  }
-  //confirm password validations
-  if (values.password && values.password !== values.confirm_password) {
-    errors.confirm_password = 'password and confirm password not match'
   }
   return errors
 }
@@ -63,30 +54,12 @@ class UserFormComponent extends Component {
                is-danger={email.touched && email.error}
                {...email}/>
 
-        <label className="label">Password</label>
-
-        <div className="control is-horizontal">
-
-          <input type="password"
-                 className="input"
-                 placeholder="Type new password"
-                 {...password}/>
-
-          <input type="password"
-                 className="input"
-                 placeholder="Type new password again"
-                 {...confirm_password}/>
-
-        </div>
-        {password.touched && password.error && <span className="is-danger">{password.error}</span>}
-        {confirm_password.touched && confirm_password.error && <div className="is-danger">{confirm_password.error}</div>}
-
-        <p className="control">
+        <Control>
           <Button type="submit"
                   is-primary
                   is-loading={this.props.isLoading}
                   is-disabled={this.props.isLoading}>Update</Button>
-        </p>
+        </Control>
       </form>
     )
   }
@@ -94,7 +67,7 @@ class UserFormComponent extends Component {
 
 UserFormComponent = reduxForm({
   form: "user",
-  fields: ['name', 'email', 'password', 'confirm_password'],
+  fields: ['name', 'email'],
   validate
 },
 state => ({

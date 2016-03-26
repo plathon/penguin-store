@@ -15,7 +15,7 @@ const validate = values => {
   const errors = {}
   //address validations
   if (!values.address) {
-    errors.address = 'Required'
+    errors.address = 'Select a address to ship'
   }
   return errors
 }
@@ -81,6 +81,7 @@ class CheckoutFormComponent extends Component {
                 )}
               </tbody>
             </table>
+            {address.touched && address.error && <span className="is-danger">{address.error}</span>}
             {emptyAddressesLabel}
           </Column>
         </Columns>
@@ -107,7 +108,8 @@ class CheckoutFormComponent extends Component {
                     is-loading={this.props.isLoading}
                     is-disabled={this.props.isLoading ||
                                  !this.props.cartItems.length ||
-                                 !this.props.addresses.length}>Checkout</Button>
+                                 !this.props.addresses.length ||
+                                 (address.touched && address.error)}>Checkout</Button>
 
           </Column>
         </Columns>
