@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-
-import Button from '../../template/src/components/Button'
+import { Button, Control } from 'bulma-react'
 
 /**
 * Validations
@@ -42,7 +41,7 @@ class CategoryFormComponent extends Component {
     const { fields: { name }, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.insertCategory)}>
-        <div className="control is-horizontal">
+        <Control is-horizontal>
 
           <input type="text"
                  className="input"
@@ -54,7 +53,7 @@ class CategoryFormComponent extends Component {
                   is-loading={this.props.isLoading}
                   is-disabled={this.props.isLoading}>Create</Button>
 
-        </div>
+        </Control>
         {name.touched && name.error && <span className="is-danger">{name.error}</span>}
       </form>
     )

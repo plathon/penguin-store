@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-
-import Button from '../../template/src/components/Button'
+import { Button, Subtitle, Table } from 'bulma-react'
 
 export default class CategoryListComponent extends Component {
 
   renderEmptyLabel (categories) {
     if (!categories.length)
-      return <h1 className="subtitle is-4 is-text-centered">You don't have any category yet :(</h1>
+      return <Subtitle is-4 is-text-centered>You don't have any category yet :(</Subtitle>
   }
 
   render () {
     return (
       <div>
-        <table className="table">
+        <Table>
           <thead>
             <tr>
               <th>Category Name</th>
@@ -34,7 +33,7 @@ export default class CategoryListComponent extends Component {
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
         {this.renderEmptyLabel(this.props.categories)}
       </div>
     )

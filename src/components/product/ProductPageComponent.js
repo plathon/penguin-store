@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
 import ImageGallery from 'react-image-gallery'
-
 require('react-image-gallery/build/image-gallery.css')
-
-import Container from '../../template/src/components/Container'
-import Section from '../../template/src/components/Section'
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
-import Content from '../../template/src/components/Content'
-import Button from '../../template/src/components/Button'
+import { Container, Section, Columns, Column, Content, Button, Title } from 'bulma-react'
 
 const images = [
   {
@@ -49,7 +42,7 @@ class ProductPageComponent extends Component {
                             onSlide={this.handleSlide}/>
             </Column>
             <Column is-6>
-              <h1 className="title">{this.props.product.name}</h1>
+              <Title>{this.props.product.name}</Title>
               <p className="title">${this.props.product.price}</p>
               <Content>
                 <p className="subtitle">{this.props.product.description}</p>

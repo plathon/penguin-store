@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TopBarMenu from './TopBarMenuComponent'
 import TopBarCategory from './TopBarCategoryComponent'
 

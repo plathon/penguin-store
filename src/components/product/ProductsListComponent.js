@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
-import Card from '../../template/src/components/Card'
-import CardImage from '../../template/src/components/CardImage'
-import CardContent from '../../template/src/components/CardContent'
-import Content from '../../template/src/components/Content'
-import Control from '../../template/src/components/Control'
-import Button from '../../template/src/components/Button'
+import { Columns, Column, Card, CardImage, CardContent, Content, Control, Button } from 'bulma-react'
 
 export default class ProductsListComponent extends Component {
 
@@ -39,7 +31,6 @@ export default class ProductsListComponent extends Component {
                   is-primary
                   is-fullwidth
                   onClick={this.props.insertProductToCart.bind(this, product)}>Add To Card</Button>
-
         </Control>
       )
     }

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Container from '../../template/src/components/Container'
-import Section from '../../template/src/components/Section'
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
+import { Container, Section, Columns, Column, Title } from 'bulma-react'
 
 import ShippingOptionsList from './ShippingOptionsListComponent'
 
@@ -16,10 +12,10 @@ class ShippingOptionsPageComponent extends Component {
 
           <Columns>
             <Column is-10 is-offset-1>
-              <h1 className="title">
+              <Title>
                 Shipping Settings
                 <Link className="button is-primary is-pulled-right" to="/admin/settings/shipping-options/new">Add Shipping Option</Link>
-              </h1>
+              </Title>
             </Column>
           </Columns>
 

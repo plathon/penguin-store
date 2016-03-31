@@ -1,14 +1,13 @@
 import React from 'react'
-
-import Button from '../../template/src/components/Button'
+import { Button, Icon, Subtitle, Table } from 'bulma-react'
 
 export default function CartListItemsComponent (props) {
   let emptyCartLabel = (!props.cartItems.length) ?
-                       (<h1 className="subtitle is-4 is-text-centered">You shopping cart is empty :(</h1>) :
+                       (<Subtitle is-4 is-text-centered>You shopping cart is empty :(</Subtitle>) :
                        ''
   return (
     <div>
-      <table className="table is-bordered">
+      <Table is-bordered>
         <thead>
           <tr>
             <th>Product</th>
@@ -29,13 +28,13 @@ export default function CartListItemsComponent (props) {
               <td>${item.price * item.quantity}</td>
               <td className="table-link table-icon">
                 <Button type="button" onClick={ () => { props.removeCartProduct(i) } }>
-                  <i className="fa fa-trash"></i>
+                  <Icon icon='trash'/>
                 </Button>
               </td>
             </tr>
           )}
         </tbody>
-      </table>
+      </Table>
       {emptyCartLabel}
     </div>
   )

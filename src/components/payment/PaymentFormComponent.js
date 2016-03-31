@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-
-import Input from '../../template/src/components/Input'
-import Button from '../../template/src/components/Button'
-import Control from '../../template/src/components/Control'
+import { Input, Button, Control } from 'bulma-react'
 
 /**
 * validations

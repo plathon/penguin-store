@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 import { loadProduct } from '../../actions/product'
-
-import Input from '../../template/src/components/Input'
-import Button from '../../template/src/components/Button'
-import Textarea from '../../template/src/components/Textarea'
-import Select from '../../template/src/components/Select'
-import Checkbox from '../../template/src/components/Checkbox'
+import { Input, Button, Textarea, Select, Checkbox, Control } from 'bulma-react'
 
 /**
 * Validations
@@ -90,20 +85,20 @@ class ProductForm extends Component {
                value={category.value || ''}
                data={this.props.categories}/>
 
-       <p className="control">
+       <Control>
          <Link to="/admin/categories">Manage Categories</Link>
-       </p>
+       </Control>
 
        <Checkbox description="Product available to buy"
                  {...available}/>
 
-       <p className="control">
+       <Control>
          <Button type="submit"
                  is-primary
                  is-large
                  is-disabled={this.props.isLoading}
                  is-loading={this.props.isLoading}>Save</Button>
-       </p>
+       </Control>
 
       </form>
     )

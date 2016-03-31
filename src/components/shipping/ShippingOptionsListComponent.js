@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Button from '../../template/src/components/Button'
-import Control from '../../template/src/components/Control'
+import { Button, Control, Subtitle, Table } from 'bulma-react'
 
 class ShippingOptionsListComponent extends Component {
 
   renderEmptylabel (shippingOptions) {
     if (!shippingOptions.length)
-      return <h1 className="subtitle is-4 is-text-centered">You don't have any shipping option yet :(</h1>
+      return <Subtitle is-4 is-text-centered>You don't have any shipping option yet :(</Subtitle>
   }
 
   render () {
     return (
       <div>
-        <table className="table">
+        <Table>
           <thead>
             <tr>
               <th>Address</th>
@@ -40,7 +38,7 @@ class ShippingOptionsListComponent extends Component {
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
         {this.renderEmptylabel(this.props.shippingOptions)}
       </div>
     )

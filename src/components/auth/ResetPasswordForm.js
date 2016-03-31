@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Input from '../../template/src/components/Input'
-import Button from '../../template/src/components/Button'
+import { Input, Button } from 'bulma-react'
 
 class ResetPasswordForm extends Component {
 

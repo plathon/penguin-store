@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TopBarMenu from './TopBarMenuComponent'
 
 export default function TopBarComponent (props) {

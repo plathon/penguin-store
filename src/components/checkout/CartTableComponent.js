@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import { Subtitle, Table } from 'bulma-react'
 
 class CartTableComponent extends Component {
   render () {
     let emptyCartLabel = (!this.props.cartItems.length) ?
-                         (<h1 className="subtitle is-4 is-text-centered">You shopping cart is empty :(</h1>) :
+                         (<Subtitle is-4 is-text-centered>You shopping cart is empty :(</Subtitle>) :
                          ''
     return (
       <div>
-        <h1 className="subtitle">
+        <Subtitle>
           Cart
-        </h1>
-        <table className="table is-bordered">
+        </Subtitle>
+        <Table is-bordered>
           <thead>
             <tr>
               <th>Image</th>
@@ -31,7 +32,7 @@ class CartTableComponent extends Component {
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
         {emptyCartLabel}
       </div>
     )

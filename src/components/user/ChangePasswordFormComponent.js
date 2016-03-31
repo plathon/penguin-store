@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-
-import Button from '../../template/src/components/Button'
-import Control from '../../template/src/components/Control'
+import { Button, Control } from 'bulma-react'
 
 const validate = values => {
   const errors = {}

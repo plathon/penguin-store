@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Container from '../../template/src/components/Container'
-import Section from '../../template/src/components/Section'
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
+import { Container, Section, Columns, Column } from 'bulma-react'
 
 import SignInForm from './SignInForm'
 

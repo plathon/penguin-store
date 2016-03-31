@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
+import { Columns, Column, Subtitle, Table } from 'bulma-react'
 
 class OrdersListComponent extends Component {
 
   renderEmptyLabel (orders) {
     if (!orders.length)
-      return <h1 className="subtitle is-4 is-text-centered">You don't have any order yet :(</h1>
+      return <Subtitle is-4 is-text-centered>You don't have any order yet :(</Subtitle>
   }
 
   render () {
@@ -17,8 +15,8 @@ class OrdersListComponent extends Component {
           <div key={orderIndex}>
             <Columns>
               <Column is-10 is-offset-1>
-                <h3 className="subtitle is-3 is-text-centered">25/12/2012 00:05:23</h3>
-                <table className="table">
+                <Subtitle is-3 is-text-centered>25/12/2012 00:05:23</Subtitle>
+                <Table>
                   <thead>
                     <tr>
                       <th>Products</th>
@@ -37,7 +35,7 @@ class OrdersListComponent extends Component {
                       </tr>
                     )}
                   </tbody>
-                </table>
+                </Table>
               </Column>
             </Columns>
 
@@ -53,13 +51,13 @@ class OrdersListComponent extends Component {
 
             <Columns>
               <Column is-5 is-offset-1>
-                <h3 className="subtitle is-3">Payment</h3>
+                <Subtitle is-3>Payment</Subtitle>
                 <p>Payment Method: <strong>Credit Card</strong></p>
                 <p>Status: <span className="tag is-warning">Waiting for payment</span></p>
               </Column>
 
               <Column is-5 is-offset-1>
-                <h3 className="subtitle is-3">Shipping</h3>
+                <Subtitle is-3>Shipping</Subtitle>
                 Name: <strong>{order.address.name}</strong> Phone: <strong>{order.address.phone}</strong><br/>
                 <strong>{order.address.address_line_one}</strong><br/>
                 <strong>{order.address.address_line_two}</strong><br/>

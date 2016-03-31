@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import validator from 'validator'
-
-import Input from '../../template/src/components/Input'
-import Button from '../../template/src/components/Button'
+import { Input, Button } from 'bulma-react'
 
 import SocialAuthButtons from './SocialAuthButtons'
 

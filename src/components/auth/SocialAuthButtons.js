@@ -1,7 +1,5 @@
 import React from 'react'
-
-import Button from '../../template/src/components/Button'
-import Icon from '../../template/src/components/Icon'
+import { Button, Icon } from 'bulma-react'
 
 export default function SocialAuthButtons () {
   return (

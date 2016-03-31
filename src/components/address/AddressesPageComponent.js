@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-
-import Container from '../../template/src/components/Container'
-import Section from '../../template/src/components/Section'
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
+import { Container, Section, Columns, Column, Title } from 'bulma-react'
 
 import AddressesList from './AddressesListComponent'
 
@@ -16,10 +12,10 @@ export default class AddressesPageComponent extends Component {
 
           <Columns>
             <Column is-10 is-offset-1>
-              <h1 className="title">
+              <Title>
                 Addresses
                 <Link className="button is-primary is-pulled-right" to="address">Add Address</Link>
-              </h1>
+              </Title>
             </Column>
           </Columns>
 

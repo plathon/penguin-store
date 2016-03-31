@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-
-import Button from '../../template/src/components/Button'
+import { Button, Subtitle, Table } from 'bulma-react'
 
 export default class AddressListComponent extends Component {
 
   renderEmptylabel (addresses) {
     if (!addresses.length)
-      return <h1 className="subtitle is-4 is-text-centered">You don't have any address yet :(</h1>
+      return <Subtitle is-4 is-text-centered>You don't have any address yet :(</Subtitle>
   }
 
   render () {
     return (
       <div>
-        <table className="table">
+        <Table>
           <thead>
             <tr>
               <th>Address</th>
@@ -40,7 +39,7 @@ export default class AddressListComponent extends Component {
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
         {this.renderEmptylabel(this.props.addresses)}
       </div>
     )

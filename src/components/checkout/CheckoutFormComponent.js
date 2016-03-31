@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
+import { Columns, Column, Button, Subtitle, Title } from 'bulma-react'
 
-import Columns from '../../template/src/components/Columns'
-import Column from '../../template/src/components/Column'
-import Button from '../../template/src/components/Button'
 import CartTable from './CartTableComponent'
 
 /**
@@ -39,18 +37,18 @@ class CheckoutFormComponent extends Component {
   render () {
     const { fields: { address }, handleSubmit } = this.props
     var emptyAddressesLabel = (!this.props.addresses.length) ?
-                              (<h1 className="subtitle is-4 is-text-centered">You don't have any shipping address :(</h1>) :
+                              (<Subtitle is-4 is-text-centered>You don't have any shipping address :(</Subtitle>) :
                               ''
     return (
       <form onSubmit={handleSubmit(this.submit)}>
 
         <Columns>
           <Column is-10 is-offset-1>
-            <h1 className="subtitle">
+            <Subtitle>
               Shipping Address
               <Link className="is-primary is-pulled-right" to="address">New address</Link>
-            </h1>
-            <table className="table is-bordered">
+            </Subtitle>
+            <Table is-bordered>
               <thead>
                 <tr>
                   <th></th>
@@ -80,7 +78,7 @@ class CheckoutFormComponent extends Component {
                   </tr>
                 )}
               </tbody>
-            </table>
+            </Table>
             {address.touched && address.error && <span className="is-danger">{address.error}</span>}
             {emptyAddressesLabel}
           </Column>
@@ -94,13 +92,12 @@ class CheckoutFormComponent extends Component {
 
         <Columns>
           <Column is-10 is-offset-1>
-            <h3 className="title">Total: ${this.props.cartTotal}</h3>
+            <Title>Total: ${this.props.cartTotal}</Title>
           </Column>
         </Columns>
 
         <Columns>
           <Column is-10 is-offset-1>
-
             <Button type="submit"
                     is-success
                     is-large
@@ -110,7 +107,6 @@ class CheckoutFormComponent extends Component {
                                  !this.props.cartItems.length ||
                                  !this.props.addresses.length ||
                                  (address.touched && address.error)}>Checkout</Button>
-
           </Column>
         </Columns>
 

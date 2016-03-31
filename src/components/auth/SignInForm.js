@@ -3,9 +3,7 @@ import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 import validator from 'validator'
 
-import Input from '../../template/src/components/Input'
-import Button from '../../template/src/components/Button'
-import Control from '../../template/src/components/Control'
+import { Input, Button, Control } from 'bulma-react'
 
 import SocialAuthButtons from './SocialAuthButtons'
 

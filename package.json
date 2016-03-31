@@ -1,5 +1,5 @@
 {
-  "name": "Penguin-Store",
+  "name": "penguin-store",
   "version": "0.0.1",
   "description": "ReactJS and AWS service backend minimal ecommerce plataform",
   "scripts": {
@@ -22,6 +22,7 @@
   "dependencies": {
     "alertify.js": "^1.0.9",
     "axios": "^0.9.1",
+    "bulma-react": "^0.0.8",
     "jwt-decode": "^1.5.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
