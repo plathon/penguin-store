@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import { Link } from 'react-router'
-import { Columns, Column, Button, Subtitle, Title } from 'bulma-react'
+import { Columns, Column, Button, Subtitle, Title, Table } from 'bulma-react'
 
 import CartTable from './CartTableComponent'
 

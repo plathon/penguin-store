@@ -63,7 +63,7 @@ export function removeProduct (index) {
 
 export function loadProduct (product) {
   return (dispatch) => {
-    dispatch(productLoad(product))
+    dispatch({ type: LOAD_PRODUCT, payload: product })
   }
 }
 
@@ -81,14 +81,6 @@ function productIsertFailed () {
 
 function productInsertedSuccessfully (product) {
   return { type: PRODUCT_INSERTED_SUCCESSFULLY, payload: product }
-}
-
-/**
-* Product load actions
-**/
-
-function productLoad (product) {
-  return { type: LOAD_PRODUCT, payload: product }
 }
 
 /**

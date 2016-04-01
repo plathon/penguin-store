@@ -38,10 +38,12 @@ export default (state = initialState, action) => {
       return { ...state, is_loading: true }
 
     case PRODUCT_UPDATED_SUCCESSFULLY:
-      let productItems = state.items
-      productItems[ action.payload.index ] = action.payload.product
       return { ...state,
-               items: productItems,
+               items: [
+                 ...state.items.slice(0, action.payload.index),
+                 action.payload.product,
+                 ...state.items.slice(action.payload.index + 1)
+               ],
                is_loading: false }
 
     case PRODUCT_UPDATE_FAILED:

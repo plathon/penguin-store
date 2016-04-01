@@ -8,7 +8,6 @@ import { START_SHIPPING_OPTION_CREATE,
          START_SHIPPING_OPTION_UPDATE,
          SHIPPING_OPTION_UPDATED_SUCCESSFULLY,
          SHIPPING_OPTION_UPDATE_FAILED } from '../constants/ActionTypes'
-
 import { browserHistory } from 'react-router'
 
 /**

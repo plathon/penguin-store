@@ -2,7 +2,6 @@ import { request } from '../api'
 import jwt_decode from 'jwt-decode'
 import { browserHistory } from 'react-router'
 import alertify from 'alertify.js'
-
 import { USER_START_LOGIN,
          USER_SUCCESSFULLY_LOGGED,
          USER_LOGIN_FAILED,
@@ -15,7 +14,7 @@ import { USER_START_LOGIN,
          USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
 
 /**
-* Send auth credentials to the server
+* Send auth credentials to server
 **/
 
 export function authenticateUser (user = {}, redirect = null) {
@@ -41,7 +40,7 @@ export function authenticateUser (user = {}, redirect = null) {
 }
 
 /**
-* Send register request to the server
+* Send register request to server
 **/
 
 export function registerUser (user = {}) {
@@ -73,7 +72,7 @@ export function registerUser (user = {}) {
 
 export function logoutUser () {
   return (dispatch) => {
-    dispatch(userLoggedOut())
+    dispatch({ type: USER_LOGGED_OUT })
   }
 }
 
@@ -121,10 +120,6 @@ function userLoginFailed (message) {
 
 function userSuccessfullyLogged (token = null, user = {}) {
   return { type: USER_SUCCESSFULLY_LOGGED, payload: { token: token, user: user } }
-}
-
-function userLoggedOut () {
-  return { type: USER_LOGGED_OUT }
 }
 
 /**
