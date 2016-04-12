@@ -8,7 +8,7 @@ import { START_SHIPPING_OPTION_CREATE,
          START_SHIPPING_OPTION_UPDATE,
          SHIPPING_OPTION_UPDATED_SUCCESSFULLY,
          SHIPPING_OPTION_UPDATE_FAILED } from '../constants/ActionTypes'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 /**
 * Create shipping option
@@ -19,7 +19,7 @@ export function insertShippingOption (shippingOption) {
     dispatch(startShippingOptionCreate())
     setTimeout(() => {
       dispatch(shippingOptionCreatedSuccessfully(shippingOption))
-      browserHistory.push('/admin/settings/shipping-options')
+      hashHistory.push('/admin/settings/shipping-options')
     }, 1000)
   }
 }
@@ -56,7 +56,7 @@ export function updateShippingOption (shippingOption, index) {
     dispatch(startShippingOptionUpdate())
     setTimeout(() => {
       dispatch(shippingOptionUpdatedSuccessfully(shippingOption, index))
-      browserHistory.push('/admin/settings/shipping-options')
+      hashHistory.push('/admin/settings/shipping-options')
     }, 1000)
   }
 }

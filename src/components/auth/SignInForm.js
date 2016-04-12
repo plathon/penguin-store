@@ -66,7 +66,9 @@ class SignInForm extends Component {
           <Link to="reset-password" className="is-pulled-right">Forgot Password</Link>
         </Control><br/>
 
-      <SocialAuthButtons />
+      <SocialAuthButtons authenticateUserWithFacebook={this.props.authenticateUserWithFacebook}
+                         authenticateUserWithTwitter={this.props.authenticateUserWithTwitter}
+                         isLoding={this.props.isLoding}/>
 
       </form>
     )

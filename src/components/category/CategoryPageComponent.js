@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertCategory } from '../../actions/category'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import { Container, Section, Columns, Column, Icon, Title } from 'bulma-react'
 
 import CategoryForm from './CategoryFormComponent'
@@ -20,7 +20,7 @@ export default class CategoryPageComponent extends Component {
               <Title is-text-centered>
                 <Icon icon="arrow-left"
                       is-pulled-left
-                      onClick={browserHistory.goBack.bind(this)}/>
+                      onClick={hashHistory.goBack.bind(this)}/>
                 Category
               </Title>
             </Column>

@@ -1,5 +1,4 @@
-import { browserHistory } from 'react-router'
-
+import { hashHistory } from 'react-router'
 import { START_ADDRESS_INSERT,
          ADDRESS_INSERTED_SUCCESSFULLY,
          ADDRESS_INSERT_FAILED,
@@ -16,7 +15,7 @@ import { START_ADDRESS_INSERT,
     dispatch(startAddressInsert())
     setTimeout(() => {
       dispatch(addressInsertedSuccessfully(address))
-      browserHistory.push('/addresses')
+      hashHistory.push('/addresses')
      }, 1000)
   }
  }

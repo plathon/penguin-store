@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import { Container, Section, Columns, Column, Icon, Title } from 'bulma-react'
 
 import PaymentForm from './PaymentFormComponent'
@@ -15,7 +15,7 @@ class PaymentPageComponent extends Component {
               <Title is-text-centered>
                 <Icon icon="arrow-left"
                       is-pulled-left
-                      onClick={browserHistory.goBack.bind(this)}/>
+                      onClick={hashHistory.goBack.bind(this)}/>
                 Payment Settings
               </Title>
             </Column>

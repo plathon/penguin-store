@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { syncHistory, routeReducer, routeActions } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form';
 import { UserAuthWrapper } from 'redux-auth-wrapper'
@@ -12,6 +12,7 @@ import * as reducers from './reducers'
 import App from './components/App'
 import Home from './components/Home'
 import Auth from './containers/auth/AuthContainer'
+import OAuth from './containers/auth/OAuthCallbackContainer'
 import Resgister from './containers/auth/RegisterContainer'
 import ResetPassword from './containers/auth/ResetPasswordContainer'
 import Products from './containers/product/ProductsContainer'
@@ -30,7 +31,7 @@ import ShippingOptions from './containers/shipping/ShippingOptionsContainer'
 import ShippingManage from './containers/shipping/ShippingManageContainer'
 import Settings from './containers/settings/SettingsContainer'
 
-const history = browserHistory
+const history = hashHistory
 const synchronizedHistory = syncHistory(history)
 const reducer = combineReducers({
   ...reducers,
@@ -71,6 +72,7 @@ render(
         <Route path="signin" component={Auth}/>
         <Route path="signup" component={Resgister}/>
         <Route path="reset-password" component={ResetPassword}/>
+        <Route path="oauth/:provider" component={OAuth}/>
 
         <Route path="/" component={Home}>
           <IndexRoute component={Products}/>

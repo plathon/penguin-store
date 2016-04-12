@@ -1,6 +1,6 @@
 import { request } from '../api'
 import { makeUrl } from '../api'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 import { START_PRODUCTS_RETRIEVE,
          PRODUCTS_RETRIEVED_SUCCESSFULLY,
@@ -25,7 +25,7 @@ export function insertProduct (product) {
     dispatch(startProductInsert())
     setTimeout(() => {
       dispatch(productInsertedSuccessfully(product))
-      browserHistory.push('/')
+      hashHistory.push('/')
      }, 1000)
   }
 }
@@ -39,7 +39,7 @@ export function updateProduct (product, index) {
     dispatch(startProductUpdate())
     setTimeout(() => {
       dispatch(productUpdatedSuccessfully(product, index))
-      browserHistory.push('/')
+      hashHistory.push('/')
      }, 1000)
   }
 }
