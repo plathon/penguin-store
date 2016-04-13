@@ -1,3 +1,4 @@
+import alertify from 'alertify.js'
 import { ADD_PRODUCT_TO_CART,
          REMOVE_PRODUCT_TO_CART,
          UPDATE_PRODUCT_QTY_ON_CART,
@@ -9,6 +10,7 @@ import { ADD_PRODUCT_TO_CART,
 
 export function insertProductToCart (product) {
   return (dispatch) => {
+    alertify.logPosition("top right").success("Product was added successfully on cart")
     dispatch({ type: ADD_PRODUCT_TO_CART, payload: product })
   }
 }
