@@ -14,6 +14,8 @@ class SignUpPage extends Component {
           <Columns>
             <Column is-half is-offset-quarter>
               <SignUpForm registerUser={this.props.registerUser}
+                          authenticateUserWithFacebook={this.props.authenticateUserWithFacebook}
+                          authenticateUserWithTwitter={this.props.authenticateUserWithTwitter}
                           isLoding={this.props.isLoding}/>
             </Column>
           </Columns>

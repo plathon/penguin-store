@@ -78,7 +78,9 @@ class SignUpForm extends Component {
 
         <br/><br/>
 
-        <SocialAuthButtons />
+        <SocialAuthButtons authenticateUserWithFacebook={this.props.authenticateUserWithFacebook}
+                           authenticateUserWithTwitter={this.props.authenticateUserWithTwitter}
+                           isLoding={this.props.isLoding}/>
 
       </form>
     )
