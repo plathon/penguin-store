@@ -19,7 +19,7 @@ export function insertProductToCart (product) {
 
 export function removeCartProduct (productIndex) {
   return (dispatch) => {
-    dispatch({ type: REMOVE_PRODUCT_TO_CART, payload: index })
+    dispatch({ type: REMOVE_PRODUCT_TO_CART, payload: productIndex })
   }
 }
 
