@@ -1,7 +1,4 @@
-import { request } from '../api'
-import { makeUrl } from '../api'
 import { hashHistory } from 'react-router'
-
 import { START_PRODUCTS_RETRIEVE,
          PRODUCTS_RETRIEVED_SUCCESSFULLY,
          PRODUCTS_RETRIEVE_FAILED,

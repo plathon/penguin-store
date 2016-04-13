@@ -1,3 +1,4 @@
+import alertify from 'alertify.js'
 import { START_SETTINGS_INSERT,
          SETTINGS_INSERTED_SUCCESSFULLY,
          SETTINGS_INSERT_FAILED } from '../constants/ActionTypes'
@@ -10,6 +11,7 @@ export function insertSettings (settings) {
   return (dispatch) => {
     dispatch(startSettingsInsert())
     setTimeout(() => {
+      alertify.logPosition("top right").success("Store settings successfully updated")
       dispatch(settingsInsertedSuccessfully(settings))
     }, 1000)
   }
