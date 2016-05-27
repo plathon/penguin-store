@@ -1,8 +1,10 @@
 import 'whatwg-fetch'
 import jwt_decode from 'jwt-decode'
 import alertify from 'alertify.js'
+import LocalStore from 'local-store'
 import { hashHistory } from 'react-router'
-import { USER_START_LOGIN,
+import { BASE_URL,
+         USER_START_LOGIN,
          USER_SUCCESSFULLY_LOGGED,
          USER_LOGIN_FAILED,
          USER_START_REGISTER,
@@ -12,6 +14,7 @@ import { USER_START_LOGIN,
          USER_START_CHANGE_DATA,
          USER_DATA_SUCCESSFULLY_CHANGED,
          USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
+var localStore = LocalStore()
 /**
 * OAUTH Data
 **/
@@ -25,7 +28,7 @@ import { FACEBOOK_AUTH_DATA,
 export function authenticateUser (user = {}, redirect = null) {
   return (dispatch) => {
     dispatch(userStartLogin())
-    fetch('http://localhost:3001/signin', {
+    fetch(`${ BASE_URL }signin`, {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'
@@ -49,6 +52,7 @@ export function authenticateUser (user = {}, redirect = null) {
       return res.json()
     }).then((res) => {
       let token = res.token
+      localStore.set( 'token', token )
       let user  = jwt_decode(token)
       dispatch(userSuccessfullyLogged(token, user))
       if (redirect) hashHistory.replace(redirect)
@@ -174,7 +178,7 @@ export function oauthCallback (provider, params) {
 export function registerUser (user = {}) {
   return (dispatch) => {
     dispatch(userStartRegister())
-    fetch('http://localhost:3001/signup', {
+    fetch(`${ BASE_URL }signup`, {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache'

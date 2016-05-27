@@ -23,6 +23,7 @@
     "alertify.js": "^1.0.9",
     "bulma-react": "^0.0.8",
     "jwt-decode": "^1.5.1",
+    "local-store": "^0.2.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-image-gallery": "^0.5.10",

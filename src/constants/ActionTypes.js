@@ -1,4 +1,9 @@
 /**
+* API
+**/
+export const BASE_URL                               = 'http://localhost:3001/'
+
+/**
 * User Actions
 **/
 export const USER_START_LOGIN                       = 'USER_START_LOGIN'
@@ -92,3 +97,6 @@ export const SHIPPING_OPTION_UPDATE_FAILED          = 'SHIPPING_OPTION_UPDATE_FA
 export const START_SETTINGS_INSERT                  = 'START_SETTINGS_INSERT'
 export const SETTINGS_INSERTED_SUCCESSFULLY         = 'SETTINGS_INSERTED_SUCCESSFULLY'
 export const SETTINGS_INSERT_FAILED                 = 'SETTINGS_INSERT_FAILED'
+export const START_SETTINGS_RETRIEVE                = 'START_SETTINGS_RETRIEVE'
+export const SETTINGS_RETRIEVED_SUCCESSFULLY        = 'SETTINGS_RETRIEVED_SUCCESSFULLY'
+export const SETTINGS_RETRIEVE_FAILED               = 'SETTINGS_RETRIEVE_FAILED'
