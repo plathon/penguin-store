@@ -7,8 +7,9 @@ import SettingsPage from '../../components/settings/SettingsPageComponent'
 
 class SettingsContainer extends Component {
   componentWillMount () {
-    if (!this.props.retrieved)
+    if (!Object.keys(this.props.settings).length) {
       this.props.retrieveSettings()
+    }
   }
 
   render () {
@@ -20,7 +21,7 @@ class SettingsContainer extends Component {
 function mapStateToProps (state) {
   return {
     isLoading: state.settings.is_loading,
-    retrieved: state.settings.retrieved
+    settings: state.settings.data
   }
 }
 

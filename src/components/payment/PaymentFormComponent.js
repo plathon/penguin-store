@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
-import { Input, Button, Control } from 'bulma-react'
+import { Input, Button, Control, Checkbox, Title } from 'bulma-react'
 
 /**
 * validations
@@ -8,17 +8,13 @@ import { Input, Button, Control } from 'bulma-react'
 
 const validate = values => {
   const errors = {}
-  //email validations
-  if (!values.email) {
-    errors.email = 'Required'
-  }
-  //token validations
-  if (!values.token) {
-    errors.token = 'Required'
-  }
   //apikey validations
-  if (!values.apikey) {
-    errors.apikey = 'Required'
+  if (!values.stripe_apikey) {
+    errors.stripe_apikey = 'Required'
+  }
+  //secretkey validations
+  if (!values.stripe_secretkey) {
+    errors.stripe_secretkey = 'Required'
   }
   return errors
 }
@@ -29,30 +25,27 @@ const validate = values => {
 
 class PaymentFormComponent extends Component {
   render () {
-    const { fields: { email, token, apikey }, handleSubmit } = this.props
+    const { fields: { stripe_active, stripe_apikey, stripe_secretkey }, handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.props.insertPaymentSettings)}>
 
-        <Input type="text"
-               label="Email"
-               placeholder="type the registered email"
-               showError={email.touched && email.error}
-               is-danger={email.touched && email.error}
-               {...email}/>
+        <Title is-4>Strip</Title>
 
        <Input type="text"
-              label="Token"
-              placeholder="type the payment token"
-              showError={token.touched && token.error}
-              is-danger={token.touched && token.error}
-              {...token}/>
+              label="Api Key"
+              placeholder="type the api key"
+              showError={stripe_apikey.touched && stripe_apikey.error}
+              is-danger={stripe_apikey.touched && stripe_apikey.error}
+              {...stripe_apikey}/>
 
       <Input type="text"
-             label="Api Key"
-             placeholder="type the payment token"
-             showError={apikey.touched && apikey.error}
-             is-danger={apikey.touched && apikey.error}
-             {...apikey}/>
+             label="Secret Key"
+             placeholder="type the secret key"
+             showError={stripe_secretkey.touched && stripe_secretkey.error}
+             is-danger={stripe_secretkey.touched && stripe_secretkey.error}
+             {...stripe_secretkey}/>
+
+      <Checkbox description="Active Stripe" {...stripe_active}/>
 
       <Control>
          <Button type="submit"
@@ -70,7 +63,7 @@ class PaymentFormComponent extends Component {
 
 PaymentFormComponent = reduxForm({
   form: 'paymentSettings',
-  fields: ['email', 'token', 'apikey'],
+  fields: ['stripe_active', 'stripe_secretkey', 'stripe_apikey'],
   validate
 },
 state => ({

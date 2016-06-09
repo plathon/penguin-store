@@ -15,6 +15,17 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case START_CATEGORIES_RETRIEVE:
+      return { ...state, is_loading: true }
+
+    case CATEGORIES_RETRIEVED_SUCCESSFULLY:
+      return { ...state,
+               is_loading: false,
+               items: [ ...state.items, ...payload ] }
+
+    case CATEGORIES_RETRIEVE_FAILED:
+      return { ...state, is_loading: false }
+
     case START_CATEGORY_INSERT:
       return { ...state, is_loading: true }
 

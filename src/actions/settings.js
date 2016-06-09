@@ -1,4 +1,4 @@
-import 'whatwg-fetch'
+import { request } from '../api'
 import alertify from 'alertify.js'
 import LocalStore from 'local-store'
 import { hashHistory } from 'react-router'
@@ -9,6 +9,7 @@ import { BASE_URL,
          START_SETTINGS_RETRIEVE,
          SETTINGS_RETRIEVED_SUCCESSFULLY,
          SETTINGS_RETRIEVE_FAILED } from '../constants/ActionTypes'
+
 var localStore = LocalStore()
 
 /**
@@ -18,29 +19,19 @@ var localStore = LocalStore()
 export function retrieveSettings () {
   return (dispatch) => {
     dispatch(startSettingsRetrieve())
-    fetch(`${ BASE_URL }store/find`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-        'Authorization': `Bearer ${localStore.get('token')}`
-      },
-      method: 'GET'
-    }).then((res) => {
-      //handle response error
-      if (!res.ok) {
-        res.json().then((err) => {
-          if (err.error) {
-            let message = err.error.message
-            alertify.logPosition("top right").error(message)
-            dispatch(settingsRetrieveFailed())
-          }
-        })
-      }
-      return res.json()
-    }).then((res) => {
-      dispatch(settingsRetrievedSuccessfully(res))
-    })
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.get('store')
+    .then((res) => {
 
+      dispatch(settingsRetrievedSuccessfully(res.data.store))
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(settingsInsertFailed(message))
+
+    });
   }
 }
 
@@ -48,34 +39,24 @@ export function retrieveSettings () {
 * Insert Settings data
 **/
 
-export function insertSettings (settings, token) {
+export function insertSettings (settings) {
   return (dispatch) => {
     dispatch(startSettingsInsert())
-    fetch(`${ BASE_URL }store/update`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-        'Authorization': `Bearer ${localStore.get('token')}`
-      },
-      method: 'POST',
-      body: JSON.stringify( settings )
-    }).then((res) => {
-      //handle response error
-      if (!res.ok) {
-        res.json().then((err) => {
-          if (err.error) {
-            let message = err.error.message
-            alertify.logPosition("top right").error(message)
-            dispatch(settingsInsertFailed(message))
-          }
-        })
-      }
-      return res.json()
-    }).then((res) => {
-      alertify.logPosition("top right").success(res.message)
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.put('store', settings)
+    .then((res) => {
+
+      alertify.logPosition("top right").success(res.data.message)
       dispatch(settingsInsertedSuccessfully(settings))
       hashHistory.replace('/')
-    })
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(settingsInsertFailed(message))
+
+    });
   }
 }
 

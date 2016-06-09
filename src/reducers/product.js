@@ -10,16 +10,33 @@ import { START_PRODUCTS_RETRIEVE,
          PRODUCT_UPDATE_FAILED,
          START_PRODUCT_REMOVE,
          PRODUCT_REMOVED_SUCCESSFULLY,
-         PRODUCT_REMOVE_FAILED } from '../constants/ActionTypes'
+         PRODUCT_REMOVE_FAILED,
+         UPDATE_PRODUCT_SEARCH_PARAMS,
+         START_PRODUCT_SEARCH,
+         PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY,
+         PRODUCT_SEARCH_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   data: {},
   items: [],
+  search: {},
   is_loading: false
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case START_PRODUCTS_RETRIEVE:
+      return { ...state, is_loading: true }
+
+    case PRODUCTS_RETRIEVED_SUCCESSFULLY:
+      return { ...state,
+               is_loading: false,
+               items: [ ...state.items,
+                        ...action.payload ] }
+
+    case PRODUCTS_RETRIEVE_FAILED:
+      return { ...state, is_loading: false }
+
     case START_PRODUCT_INSERT:
       return { ...state, is_loading: true }
 
@@ -61,6 +78,22 @@ export default (state = initialState, action) => {
                is_loading: false }
 
     case PRODUCT_REMOVE_FAILED:
+      return { ...state, is_loading: false }
+
+    case UPDATE_PRODUCT_SEARCH_PARAMS:
+      return { ...state,
+               search: {
+                 searchTerm: action.payload.searchTerm
+               }
+             }
+
+    case START_PRODUCT_SEARCH:
+      return { ...state, is_loading: false }
+
+    case PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY:
+      return { ...state, items: action.payload, is_loading: true }
+
+    case PRODUCT_SEARCH_FAILED:
       return { ...state, is_loading: false }
 
     default:

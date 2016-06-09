@@ -49,7 +49,7 @@ class ProductForm extends Component {
   }
 
   render () {
-    const { fields: { name, price, description, quantity, category, available }, handleSubmit, load } = this.props
+    const { fields: { _id, name, price, description, quantity, category, available }, handleSubmit, load } = this.props
     return (
       <form onSubmit={handleSubmit(this.props.submitProduct)}>
 
@@ -107,7 +107,7 @@ class ProductForm extends Component {
 
 ProductForm = reduxForm({
   form: 'productADM',
-  fields: ['name', 'price', 'description', 'quantity', 'category', 'available'],
+  fields: ['_id', 'name', 'price', 'description', 'quantity', 'category', 'available'],
   validate
 },
 state => ({

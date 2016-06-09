@@ -12,13 +12,22 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_PRODUCT_TO_CART:
-      return { ...state,
-               items: [ ...state.items,
-                        { name: payload.name, quantity: 1, price: payload.price }
-                      ],
-               subtotal: Number(state.subtotal) + Number(payload.price),
-               total: Number(state.total) + Number(payload.price)
-              }
+      var productExists = false;
+      state.items.map((item, index) => {
+        if (item.name === payload.name) {
+          productExists = true
+        }
+      })
+      if (!productExists){
+        return { ...state,
+                 items: [ ...state.items,
+                          { name: payload.name, quantity: 1, price: payload.price }
+                        ],
+                 subtotal: Number(state.subtotal) + Number(payload.price),
+                 total: Number(state.total) + Number(payload.price)
+                }
+      } else
+        return { ...state }
 
     case REMOVE_PRODUCT_TO_CART:
       return { ...state,

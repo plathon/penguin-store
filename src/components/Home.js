@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logoutUser } from '../actions/user'
+import { searchProducts } from '../actions/product'
 
 import TopBarHome from './layout/TopBarHomeComponent'
 import Footer from './layout/FooterComponent'
@@ -15,7 +16,8 @@ class Home extends Component {
       <div>
         <TopBarHome logoutUser={this.props.logoutUser}
                     user={this.props.user}
-                    categories={this.props.categories}/>
+                    categories={this.props.categories}
+                    searchProducts={this.props.searchProducts}/>
         {this.props.children}
         <Footer/>
       </div>
@@ -25,7 +27,7 @@ class Home extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logoutUser }, dispatch)
+  return bindActionCreators({ logoutUser, searchProducts }, dispatch)
 }
 
 function mapStateToProps(state) {

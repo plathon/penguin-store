@@ -6,7 +6,7 @@ class ShippingOptionsListComponent extends Component {
 
   renderEmptylabel (shippingOptions) {
     if (!shippingOptions.length)
-      return <Subtitle is-4 is-text-centered>You don't have any shipping option yet :(</Subtitle>
+      return <Subtitle is-4 is-text-centered>You dont have any shipping option yet :(</Subtitle>
   }
 
   render () {
@@ -32,7 +32,7 @@ class ShippingOptionsListComponent extends Component {
                             is-loading={this.props.isLoading}
                             is-disabled={this.props.isLoading}
                             is-pulled-right
-                            onClick={this.props.removeShippingOption.bind(this, i)}>Delete</Button>
+                            onClick={this.props.removeShippingOption.bind(this, i, shippingOption._id)}>Delete</Button>
                   </Control>
                 </th>
               </tr>

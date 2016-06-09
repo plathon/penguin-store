@@ -1,4 +1,11 @@
-import { START_SHIPPING_OPTION_CREATE,
+import { request } from '../api'
+import alertify from 'alertify.js'
+import LocalStore from 'local-store'
+import { hashHistory } from 'react-router'
+import { START_SHIPPING_OPTION_RETRIEVE,
+         SHIPPING_OPTION_RETRIEVED_SUCCESSFULLY,
+         SHIPPING_OPTION_RETRIEVE_FAILED,
+         START_SHIPPING_OPTION_CREATE,
          SHIPPING_OPTION_CREATED_SUCCESSFULLY,
          SHIPPING_OPTION_CREATE_FAILED,
          START_SHIPPING_OPTION_REMOVE,
@@ -8,7 +15,26 @@ import { START_SHIPPING_OPTION_CREATE,
          START_SHIPPING_OPTION_UPDATE,
          SHIPPING_OPTION_UPDATED_SUCCESSFULLY,
          SHIPPING_OPTION_UPDATE_FAILED } from '../constants/ActionTypes'
-import { hashHistory } from 'react-router'
+
+var localStore = LocalStore()
+
+/**
+* Retrieve shipping option
+**/
+
+export function retrieveShippingOptions () {
+  return (dispatch) => {
+    dispatch({ type: START_SHIPPING_OPTION_RETRIEVE });
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.get('shipping')
+    .then(function (res) {
+      var shipping = res.data.shipping;
+      dispatch({ type: SHIPPING_OPTION_RETRIEVED_SUCCESSFULLY, payload: shipping });
+    }).catch(function (err) {
+      dispatch({ type: SHIPPING_OPTION_RETRIEVE_FAILED });
+    })
+  }
+}
 
 /**
 * Create shipping option
@@ -17,10 +43,23 @@ import { hashHistory } from 'react-router'
 export function insertShippingOption (shippingOption) {
   return (dispatch) => {
     dispatch(startShippingOptionCreate())
-    setTimeout(() => {
-      dispatch(shippingOptionCreatedSuccessfully(shippingOption))
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.post('shipping', shippingOption)
+    .then(function (res) {
+
+      var message    = res.data.message
+      var shipping   = res.data.shipping;
+      dispatch(shippingOptionCreatedSuccessfully(shipping))
+      alertify.logPosition("top right").success(message)
       hashHistory.push('/admin/settings/shipping-options')
-    }, 1000)
+
+    }).catch(function (err) {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(shippingOptionCreateFailed());
+
+    });
   }
 }
 
@@ -28,12 +67,24 @@ export function insertShippingOption (shippingOption) {
 * Remove shipping option
 **/
 
-export function removeShippingOption (index) {
+export function removeShippingOption (index, shippingOption) {
   return (dispatch) => {
     dispatch(startShippingOptionRemove())
-    setTimeout(() => {
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.delete(`shipping/${shippingOption}`)
+    .then(function (res) {
+
       dispatch(shippingOptionRemovedSuccessfully(index))
-    }, 1000)
+      var message = res.data.message
+      alertify.logPosition("top right").success(message)
+
+    }).catch(function (err) {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(shippingOptionUpdateFailed());
+
+    });
   }
 }
 
@@ -54,10 +105,18 @@ export function loadShipping (shippingOption) {
 export function updateShippingOption (shippingOption, index) {
   return (dispatch) => {
     dispatch(startShippingOptionUpdate())
-    setTimeout(() => {
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.put('shipping', shippingOption)
+    .then((res) => {
       dispatch(shippingOptionUpdatedSuccessfully(shippingOption, index))
+      var message = res.data.message
+      alertify.logPosition("top right").success(message)
       hashHistory.push('/admin/settings/shipping-options')
-    }, 1000)
+    }).catch((err) => {
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(shippingOptionUpdateFailed())
+    });
   }
 }
 

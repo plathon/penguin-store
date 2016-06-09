@@ -7,7 +7,10 @@ import { USER_START_LOGIN,
          USER_LOGGED_OUT,
          USER_START_CHANGE_DATA,
          USER_DATA_SUCCESSFULLY_CHANGED,
-         USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
+         USER_DATA_CHANGE_FAILED,
+         USER_START_UPDATE_PASSWORD,
+         USER_PASSWORD_SUCCESSFULLY_UPDATE,
+         USER_PASSWORD_UPDATE_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   data: {},
@@ -53,6 +56,14 @@ export default (state = initialState, action) => {
     case USER_DATA_CHANGE_FAILED:
       return { ...state, is_loading: false }
 
+    case USER_START_UPDATE_PASSWORD:
+      return { ...state, is_loading: true }
+
+    case USER_PASSWORD_SUCCESSFULLY_UPDATE:
+      return { ...state, is_loading: false }
+
+    case USER_PASSWORD_UPDATE_FAILED:
+      return { ...state, is_loading: false }
     default:
       return state;
   }

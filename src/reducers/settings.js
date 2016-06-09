@@ -7,8 +7,7 @@ import { START_SETTINGS_INSERT,
 
 const initialState = {
   data: {},
-  is_loading: false,
-  retrieved: false
+  is_loading: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -17,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, is_loading: true }
 
     case SETTINGS_RETRIEVED_SUCCESSFULLY:
-      return { ...state, data: payload, retrieved: true, is_loading: false }
+      return { ...state, data: payload, is_loading: false }
 
     case SETTINGS_RETRIEVE_FAILED:
       return { ...state, is_loading: false }

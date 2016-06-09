@@ -29,7 +29,7 @@ class ChangePasswordFormComponent extends Component {
   render () {
     const { fields: { current_password, password, confirm_password }, handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(this.props.updateUserPassword)}>
 
         <label className="label">Password</label>
 

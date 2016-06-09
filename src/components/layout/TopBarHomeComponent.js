@@ -20,8 +20,7 @@ export default function TopBarHomeComponent (props) {
               <span></span>
             </span>
 
-            <TopBarMenu user={props.user}
-                        logoutUser={props.logoutUser}/>
+            <TopBarMenu user={props.user} logoutUser={props.logoutUser}/>
 
           </div>
         </header>
@@ -38,7 +37,8 @@ export default function TopBarHomeComponent (props) {
         </div>
       </div>
 
-      <TopBarCategory categories={props.categories}/>
+      <TopBarCategory categories={props.categories}
+                      searchProducts={props.searchProducts}/>
 
     </section>
   )

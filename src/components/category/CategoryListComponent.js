@@ -5,7 +5,7 @@ export default class CategoryListComponent extends Component {
 
   renderEmptyLabel (categories) {
     if (!categories.length)
-      return <Subtitle is-4 is-text-centered>You don't have any category yet :(</Subtitle>
+      return <Subtitle is-4 is-text-centered>You dont have any category yet :(</Subtitle>
   }
 
   render () {
@@ -26,7 +26,7 @@ export default class CategoryListComponent extends Component {
                   <Button type="button"
                           is-pulled-right
                           is-small
-                          onClick={this.props.removeCategory.bind(this, i)}
+                          onClick={this.props.removeCategory.bind(this, i, category._id)}
                           is-disabled={this.props.isLoading}
                           is-loading={this.props.isLoading}>Delete</Button>
                 </th>

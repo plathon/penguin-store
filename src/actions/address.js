@@ -1,10 +1,40 @@
+import { request } from '../api'
+import LocalStore from 'local-store'
+import alertify from 'alertify.js'
 import { hashHistory } from 'react-router'
 import { START_ADDRESS_INSERT,
          ADDRESS_INSERTED_SUCCESSFULLY,
          ADDRESS_INSERT_FAILED,
          START_ADDRESS_REMOVE,
          ADDRESS_REMOVED_SUCCESSFULLY,
-         ADDRESS_REMOVE_FAILED } from '../constants/ActionTypes'
+         ADDRESS_REMOVE_FAILED,
+         START_ADDRESS_SELECT,
+         ADDRESS_SELECTED_SUCCESSFULLY,
+         ADDRESS_SELEC_FAILED } from '../constants/ActionTypes'
+
+var localStore = LocalStore()
+
+/**
+* find address
+**/
+
+export function findAddress (limit = 10, offset = 0) {
+  return (dispatch) => {
+    dispatch(startAddressSelect())
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.get('addresses', { params: { limit: limit, offset: offset } })
+    .then((res) => {
+
+      dispatch(addressSelectedSuccessfully(res.data))
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+
+    })
+  }
+}
 
  /**
  * Insert address
@@ -13,10 +43,20 @@ import { START_ADDRESS_INSERT,
  export function insertAddress (address) {
   return (dispatch) => {
     dispatch(startAddressInsert())
-    setTimeout(() => {
-      dispatch(addressInsertedSuccessfully(address))
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.post('addresses', address)
+    .then((res) => {
+
+      let resAddress = res.data.address
+      dispatch(addressInsertedSuccessfully(resAddress))
       hashHistory.push('/addresses')
-     }, 1000)
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+
+    });
   }
  }
 
@@ -24,13 +64,42 @@ import { START_ADDRESS_INSERT,
  * remove address
  **/
 
- export function removeAddress (address) {
+ export function removeAddress (i, address) {
   return (dispatch) => {
     dispatch(startAddressRemove())
-    setTimeout(() => {
-      dispatch(addressRemovedSuccessfully(address))
-     }, 1000)
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.delete(`addresses/${address}`, address)
+    .then((res) => {
+
+      let message = res.data.message
+      alertify.logPosition("top right").success(message)
+      dispatch(addressRemovedSuccessfully(i))
+      hashHistory.push('/addresses')
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(addressRemoveFailed())
+
+    });
   }
+ }
+
+ /**
+ * Address find actions
+ **/
+
+ function startAddressSelect () {
+   return { type: START_ADDRESS_SELECT }
+ }
+
+ function addressSelectFailed () {
+   return { type: ADDRESS_SELEC_FAILED }
+ }
+
+ function addressSelectedSuccessfully (address) {
+   return { type: ADDRESS_SELECTED_SUCCESSFULLY, payload: address }
  }
 
  /**

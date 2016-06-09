@@ -5,7 +5,7 @@ export default class AddressListComponent extends Component {
 
   renderEmptylabel (addresses) {
     if (!addresses.length)
-      return <Subtitle is-4 is-text-centered>You don't have any address yet :(</Subtitle>
+      return <Subtitle is-4 is-text-centered>You dont have any address yet :(</Subtitle>
   }
 
   render () {
@@ -34,7 +34,7 @@ export default class AddressListComponent extends Component {
                           is-pulled-right
                           is-loading={this.props.isLoading}
                           is-disabled={this.props.isLoading}
-                          onClick={this.props.removeAddress.bind(this, i)}>Delete</Button>
+                          onClick={this.props.removeAddress.bind(this, i, address._id)}>Delete</Button>
                 </th>
               </tr>
             )}

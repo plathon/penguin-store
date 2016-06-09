@@ -1,4 +1,4 @@
-import 'whatwg-fetch'
+import { request } from '../api'
 import jwt_decode from 'jwt-decode'
 import alertify from 'alertify.js'
 import LocalStore from 'local-store'
@@ -13,8 +13,13 @@ import { BASE_URL,
          USER_LOGGED_OUT,
          USER_START_CHANGE_DATA,
          USER_DATA_SUCCESSFULLY_CHANGED,
-         USER_DATA_CHANGE_FAILED } from '../constants/ActionTypes'
+         USER_DATA_CHANGE_FAILED,
+         USER_START_UPDATE_PASSWORD,
+         USER_PASSWORD_SUCCESSFULLY_UPDATE,
+         USER_PASSWORD_UPDATE_FAILED } from '../constants/ActionTypes'
+
 var localStore = LocalStore()
+
 /**
 * OAUTH Data
 **/
@@ -28,36 +33,22 @@ import { FACEBOOK_AUTH_DATA,
 export function authenticateUser (user = {}, redirect = null) {
   return (dispatch) => {
     dispatch(userStartLogin())
-    fetch(`${ BASE_URL }signin`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
-      method: 'POST',
-      body: JSON.stringify( user )
-    }).then((res) => {
-      //handle response error
-      if (!res.ok) {
-        res.json().then((err) => {
-          if (err.error) {
-            let message = err.error.message
-            alertify.logPosition("top right").error(message)
-            dispatch(userLoginFailed(message))
-          }
-        })
-      }
-      //if everything is ok
-      //return a response
-      //in json format
-      return res.json()
-    }).then((res) => {
-      let token = res.token
-      localStore.set( 'token', token )
-      let user  = jwt_decode(token)
-      dispatch(userSuccessfullyLogged(token, user))
-      if (redirect) hashHistory.replace(redirect)
-      else hashHistory.replace('/')
-    })
+    request.post( 'users/auth', user )
+      .then(function(res) {
+
+        let token = res.data.token
+        localStore.set( 'token', token )
+        let user  = jwt_decode(token)
+        dispatch(userSuccessfullyLogged(token, user))
+        hashHistory.replace('/')
+
+      }).catch(function (err) {
+
+        let message = err.data.message
+        alertify.logPosition("top right").error(message)
+        dispatch(userLoginFailed(message))
+
+      });
   }
 }
 
@@ -79,27 +70,20 @@ export function authenticateUserWithFacebook () {
 export function authenticateUserWithTwitter () {
   return (dispatch) => {
     dispatch({ type: USER_START_LOGIN })
-    fetch('http://localhost:3001/auth/twitter', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
-      method: 'POST',
-      body: JSON.stringify( TWITTER_AUTH_DATA )
-    }).then((res) => {
-      if (!res.ok) {
-        res.json().then((err) => {
-          if (err.error) {
-            let message = err.error.message
-            alertify.logPosition("top right").error(message)
-            dispatch(userLoginFailed(message))
-          }
-        })
-      }
-      return res.json()
-    }).then((res) => {
-      window.location.assign(`https://api.twitter.com/oauth/authenticate?oauth_token=${res.oauth_token}`)
-    })
+    request.post( 'users/oauth/twitter', TWITTER_AUTH_DATA )
+      .then(function(res) {
+
+        window.location.assign(`https://api.twitter.com/oauth/authenticate?oauth_token=${res.data.oauth_token}`)
+
+      }).catch(function (err) {
+
+        let message = err.data.message
+        alertify.logPosition("top right").error(message)
+        dispatch(userLoginFailed(message))
+        hashHistory.replace('/signin')
+
+      });
+
   }
 }
 
@@ -111,61 +95,43 @@ export function oauthCallback (provider, params) {
   return (dispatch) => {
     if (provider === 'twitter') {
 
-      fetch('http://localhost:3001/auth/twitter', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache'
-        },
-        method: 'POST',
-        body: JSON.stringify( params )
-      }).then((res) => {
-        if (!res.ok) {
-          res.json().then((err) => {
-            if (err.error) {
-              let message = err.error.message
-              alertify.logPosition("top right").error(message)
-              dispatch(userLoginFailed(message))
-            }
-          })
-        }
-        return res.json()
-      }).then((res) => {
+      request.post( 'users/oauth/twitter', params )
+        .then(function(res) {
 
-        let token = res.token
-        let user  = jwt_decode(token)
-        dispatch(userSuccessfullyLogged(token, user))
-        hashHistory.replace('/')
+          let token = res.data.token
+          localStore.set( 'token', token )
+          let user  = jwt_decode(token)
+          dispatch(userSuccessfullyLogged(token, user))
+          hashHistory.replace('/')
 
-      })
+        }).catch(function (err) {
+
+          let message = err.data.message
+          alertify.logPosition("top right").error(message)
+          dispatch(userLoginFailed(message))
+          hashHistory.replace('/signin')
+
+        });
 
     } else if (provider === 'facebook') {
 
-      fetch('http://localhost:3001/auth/facebook', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache'
-        },
-        method: 'POST',
-        body: JSON.stringify(Object.assign(params, FACEBOOK_AUTH_DATA))
-      }).then((res) => {
-        if (!res.ok) {
-          res.json().then((err) => {
-            if (err.error) {
-              let message = err.error.message
-              alertify.logPosition("top right").error(message)
-              dispatch(userLoginFailed(message))
-            }
-          })
-        }
-        return res.json()
-      }).then((res) => {
+      request.post( 'users/oauth/facebook', Object.assign(params, FACEBOOK_AUTH_DATA) )
+        .then(function(res) {
 
-        let token = res.token
-        let user  = jwt_decode(token)
-        dispatch(userSuccessfullyLogged(token, user))
-        hashHistory.replace('/')
+          let token = res.data.token
+          localStore.set( 'token', token )
+          let user  = jwt_decode(token)
+          dispatch(userSuccessfullyLogged(token, user))
+          hashHistory.replace('/')
 
-      })
+        }).catch(function (err) {
+
+          let message = err.data.message
+          alertify.logPosition("top right").error(message)
+          dispatch(userLoginFailed(message))
+          hashHistory.replace('/signin')
+
+        });
 
     }
   }
@@ -178,33 +144,23 @@ export function oauthCallback (provider, params) {
 export function registerUser (user = {}) {
   return (dispatch) => {
     dispatch(userStartRegister())
-    fetch(`${ BASE_URL }signup`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
-      method: 'POST',
-      body: JSON.stringify(user)
-    }).then((res) => {
-      if (!res.ok) {
-        res.json().then((err) => {
-          if (err.error) {
-            let message = err.error.message
-            alertify.logPosition("top right").error(message)
-            dispatch(userLoginFailed(message))
-          }
-        })
-      }
-      return res.json()
-    }).then((res) => {
+    request.post( 'users', user )
+      .then(function(res) {
 
-      dispatch(userRegisteredSuccessfully())
-      let token = res.token
-      let user  = jwt_decode(token)
-      dispatch(userSuccessfullyLogged(token, user))
-      hashHistory.replace('/')
+        let token = res.data.token
+        localStore.set( 'token', token )
+        let user  = jwt_decode(token)
+        dispatch(userRegisteredSuccessfully())
+        dispatch(userSuccessfullyLogged(token, user))
+        hashHistory.replace('/')
 
-    })
+      }).catch(function (err) {
+
+        let message = err.data.message
+        alertify.logPosition("top right").error(message)
+        dispatch(userLoginFailed(message))
+
+      });
   }
 }
 
@@ -214,6 +170,7 @@ export function registerUser (user = {}) {
 
 export function logoutUser () {
   return (dispatch) => {
+    localStore.delete('token')
     dispatch({ type: USER_LOGGED_OUT })
   }
 }
@@ -225,10 +182,46 @@ export function logoutUser () {
 export function changeUserData (userData) {
   return (dispatch) => {
     dispatch(userStartChangeData())
-    setTimeout(() => {
-      alertify.logPosition("top right").success("User data successfully updated")
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.put('users', userData )
+    .then(function(res) {
+
+      let message = res.data.message
+      let token   = res.data.token
+      localStore.set( 'token', token )
+      let user    = jwt_decode(token)
       dispatch(userDataSuccessfullyChanged(userData))
-     }, 1000)
+      alertify.logPosition("top right").success(message)
+
+    }).catch(function (err) {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(userPasswordUpdateFailed(message))
+
+    });
+  }
+}
+
+/**
+* update user password
+**/
+
+export function updateUserPassword (passwordData) {
+  return (dispatch) => {
+    dispatch(userStartUpdatePassword())
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.put('users/password', passwordData)
+    .then(function (res) {
+      let message = res.data.message
+      alertify.logPosition("top right").success(message)
+      dispatch(userPasswordSuccessfullyUpdated())
+    }).catch(function (err) {
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(userLoginFailed(message))
+
+    })
   }
 }
 
@@ -278,4 +271,20 @@ function userDataChangeFailed () {
 
 function userDataSuccessfullyChanged (userData = {}) {
   return { type: USER_DATA_SUCCESSFULLY_CHANGED, payload: userData }
+}
+
+/**
+* change user password actions
+**/
+
+function userStartUpdatePassword () {
+  return { type: USER_START_UPDATE_PASSWORD }
+}
+
+function userPasswordUpdateFailed () {
+  return { type: USER_PASSWORD_UPDATE_FAILED }
+}
+
+function userPasswordSuccessfullyUpdated (userData = {}) {
+  return { type: USER_PASSWORD_SUCCESSFULLY_UPDATE, payload: userData }
 }

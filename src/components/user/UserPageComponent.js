@@ -25,7 +25,8 @@ export default class UserPageComponent extends Component {
               <br/>
 
               <Subtitle is-5>Change password</Subtitle>
-              <ChangePasswordForm isLoading={this.props.isLoading}/>
+              <ChangePasswordForm updateUserPassword={this.props.updateUserPassword}
+                                  isLoading={this.props.isLoading}/>
 
             </Column>
           </Columns>

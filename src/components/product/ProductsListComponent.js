@@ -20,7 +20,7 @@ export default class ProductsListComponent extends Component {
                   is-pulled-right
                   is-loading={this.props.isLoading}
                   is-disabled={this.props.isLoading}
-                  onClick={this.props.removeProduct.bind(this, i)}>Delete</Button>
+                  onClick={this.props.removeProduct.bind(this, i, product._id)}>Delete</Button>
           <Link className="button is-pulled-right" to={`admin/products/${i}/edit`}>Edit</Link>
         </Control>
       )

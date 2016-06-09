@@ -1,4 +1,7 @@
-import { START_SHIPPING_OPTION_CREATE,
+import { START_SHIPPING_OPTION_RETRIEVE,
+         SHIPPING_OPTION_RETRIEVED_SUCCESSFULLY,
+         SHIPPING_OPTION_RETRIEVE_FAILED,
+         START_SHIPPING_OPTION_CREATE,
          SHIPPING_OPTION_CREATED_SUCCESSFULLY,
          SHIPPING_OPTION_CREATE_FAILED,
          START_SHIPPING_OPTION_REMOVE,
@@ -17,6 +20,17 @@ const initialState = {
 
 export default ( state = initialState, { type, payload } ) => {
   switch (type) {
+    case START_SHIPPING_OPTION_RETRIEVE:
+      return { ...state, is_loading: true }
+
+    case SHIPPING_OPTION_RETRIEVED_SUCCESSFULLY:
+      return { ...state,
+               items: [ ...state.items, ...payload ],
+               is_loading: false }
+
+    case SHIPPING_OPTION_RETRIEVE_FAILED:
+      return { ...state, is_loading: false }
+
     case START_SHIPPING_OPTION_CREATE:
       return { ...state, is_loading: true }
 

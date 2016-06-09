@@ -3,7 +3,10 @@ import { START_ADDRESS_INSERT,
          ADDRESS_INSERT_FAILED,
          START_ADDRESS_REMOVE,
          ADDRESS_REMOVED_SUCCESSFULLY,
-         ADDRESS_REMOVE_FAILED } from '../constants/ActionTypes'
+         ADDRESS_REMOVE_FAILED,
+         START_ADDRESS_SELECT,
+         ADDRESS_SELECTED_SUCCESSFULLY,
+         ADDRESS_SELEC_FAILED } from '../constants/ActionTypes'
 
 const initialState = {
   items: [],
@@ -12,6 +15,15 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case START_ADDRESS_SELECT:
+      return { ...state, is_loading: true }
+
+    case ADDRESS_SELECTED_SUCCESSFULLY:
+      return { ...state, items: [ ...state.items, ...payload ], is_loading: false }
+
+    case ADDRESS_SELEC_FAILED:
+      return { ...state, is_loading: false }
+
     case START_ADDRESS_INSERT:
       return { ...state, is_loading: true }
 

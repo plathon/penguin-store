@@ -1,3 +1,6 @@
+import { request } from '../api'
+import alertify from 'alertify.js'
+import LocalStore from 'local-store'
 import { hashHistory } from 'react-router'
 import { START_PRODUCTS_RETRIEVE,
          PRODUCTS_RETRIEVED_SUCCESSFULLY,
@@ -11,7 +14,57 @@ import { START_PRODUCTS_RETRIEVE,
          PRODUCT_UPDATE_FAILED,
          START_PRODUCT_REMOVE,
          PRODUCT_REMOVED_SUCCESSFULLY,
-         PRODUCT_REMOVE_FAILED } from '../constants/ActionTypes'
+         PRODUCT_REMOVE_FAILED,
+         UPDATE_PRODUCT_SEARCH_PARAMS,
+         START_PRODUCT_SEARCH,
+         PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY,
+         PRODUCT_SEARCH_FAILED } from '../constants/ActionTypes'
+
+var localStore = LocalStore()
+
+/**
+* Search products
+**/
+
+export function searchProducts (criteria) {
+  return (dispatch) => {
+    console.log(criteria)
+    hashHistory.push({ pathname: '/', query: criteria })
+    dispatch({ type: UPDATE_PRODUCT_SEARCH_PARAMS, payload: criteria })
+    dispatch({ type: START_PRODUCT_SEARCH })
+    request.get('products', { params: criteria })
+    .then((res) => {
+      var products = res.data.products;
+      dispatch({ type: PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY, payload: products })
+    }).catch((err) => {
+      dispatch({ type: PRODUCT_SEARCH_FAILED });
+    })
+  }
+}
+
+/**
+* retrieve product
+**/
+
+export function retrieveProducts () {
+  return (dispatch) => {
+    dispatch({ type: START_PRODUCTS_RETRIEVE })
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.get('products')
+    .then((res) => {
+
+      var products = res.data.products;
+      dispatch({ type: PRODUCTS_RETRIEVED_SUCCESSFULLY, payload: products })
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch({ type: PRODUCTS_RETRIEVE_FAILED });
+
+    })
+  }
+}
 
 /**
 * Insert product
@@ -20,10 +73,23 @@ import { START_PRODUCTS_RETRIEVE,
 export function insertProduct (product) {
   return (dispatch) => {
     dispatch(startProductInsert())
-    setTimeout(() => {
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.post('products', product)
+    .then((res) => {
+
+      var message    = res.data.message
+      var product    = res.data.product;
       dispatch(productInsertedSuccessfully(product))
+      alertify.logPosition("top right").success(message)
       hashHistory.push('/')
-     }, 1000)
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(productIsertFailed());
+
+    })
   }
 }
 
@@ -34,10 +100,22 @@ export function insertProduct (product) {
 export function updateProduct (product, index) {
   return (dispatch) => {
     dispatch(startProductUpdate())
-    setTimeout(() => {
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.put('products', product)
+    .then((res) => {
+
+      var message = res.data.message
       dispatch(productUpdatedSuccessfully(product, index))
+      alertify.logPosition("top right").success(message)
       hashHistory.push('/')
-     }, 1000)
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(productUpdateFailed());
+
+    });
   }
 }
 
@@ -45,12 +123,24 @@ export function updateProduct (product, index) {
 * Remove product
 **/
 
-export function removeProduct (index) {
+export function removeProduct (index, product) {
   return (dispatch) => {
     dispatch(startProductRemove())
-    setTimeout(() => {
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.delete(`products/${product}`)
+    .then((res) => {
+
+      var message = res.data.message
       dispatch(productRemovedSuccessfully(index))
-    }, 1000)
+      alertify.logPosition("top right").success(message)
+
+    }).catch((err) => {
+
+      let message = err.data.message
+      alertify.logPosition("top right").error(message)
+      dispatch(productRemoveFailed());
+
+    });
   }
 }
 

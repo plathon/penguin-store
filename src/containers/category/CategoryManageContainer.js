@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { insertCategory, removeCategory } from '../../actions/category'
+import { retrieveCategories, insertCategory, removeCategory } from '../../actions/category'
 
 import CategoryPage from '../../components/category/CategoryPageComponent'
 
 class CategoryManageContainer extends Component {
+  componentWillMount () {
+    if (!Object.keys(this.props.categories).length) {
+      this.props.retrieveCategories();
+    }
+  }
+
   render () {
     return (
       <CategoryPage categories={this.props.categories}
@@ -24,7 +30,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators( { insertCategory, removeCategory }, dispatch )
+  return bindActionCreators( { insertCategory, removeCategory, retrieveCategories }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryManageContainer)

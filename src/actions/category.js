@@ -1,3 +1,6 @@
+import { request } from '../api'
+import alertify from 'alertify.js'
+import LocalStore from 'local-store'
 import { START_CATEGORIES_RETRIEVE,
          CATEGORIES_RETRIEVED_SUCCESSFULLY,
          CATEGORIES_RETRIEVE_FAILED,
@@ -8,6 +11,26 @@ import { START_CATEGORIES_RETRIEVE,
          CATEGORY_REMOVED_SUCCESSFULLY,
          CATEGORY_REMOVE_FAILED } from '../constants/ActionTypes'
 
+var localStore = LocalStore()
+
+/**
+* find categories
+**/
+
+export function retrieveCategories () {
+  return (dispatch) => {
+    dispatch({ type: START_CATEGORIES_RETRIEVE });
+    request.defaults.headers['Authorization'] = localStore.get( 'token' )
+    request.get('categories')
+    .then((res) => {
+      var categories = res.data.categories;
+      dispatch({ type: CATEGORIES_RETRIEVED_SUCCESSFULLY, payload: categories });
+    }).catch((err) => {
+      dispatch({ type: CATEGORIES_RETRIEVE_FAILED });
+    })
+  }
+}
+
 /**
 * Insert category
 **/
@@ -15,9 +38,17 @@ import { START_CATEGORIES_RETRIEVE,
 export function insertCategory (category) {
  return (dispatch) => {
    dispatch(startCategoryInsert())
-   setTimeout(() => {
+   request.defaults.headers['Authorization'] = localStore.get( 'token' )
+   request.post('categories', category)
+   .then((res) => {
+     category = res.data.category;
      dispatch(categoryInsertedSuccessfully(category))
-    }, 1000)
+   })
+   .catch((err) => {
+     let message = err.data.message
+     alertify.logPosition("top right").error(message)
+     dispatch(categoryIsertFailed())
+   });
  }
 }
 
@@ -25,12 +56,19 @@ export function insertCategory (category) {
 * Delete category
 **/
 
-export function removeCategory (categoryIndex) {
+export function removeCategory (categoryIndex, categoryId) {
  return (dispatch) => {
    dispatch(startCategoryRemove())
-   setTimeout(() => {
+   request.defaults.headers['Authorization'] = localStore.get( 'token' )
+   request.delete(`categories/${categoryId}`)
+   .then((res) => {
      dispatch(categoryRemovedSuccessfully(categoryIndex))
-    }, 1000)
+   })
+   .catch((err) => {
+     let message = err.data.message
+     alertify.logPosition("top right").error(message)
+     dispatch(categoryRemoveFailed())
+   });
  }
 }
 

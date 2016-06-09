@@ -21,6 +21,7 @@
   "homepage": "https://github.com/plathon/penguin-store",
   "dependencies": {
     "alertify.js": "^1.0.9",
+    "axios": "^0.12.0",
     "bulma-react": "^0.0.8",
     "jwt-decode": "^1.5.1",
     "local-store": "^0.2.0",

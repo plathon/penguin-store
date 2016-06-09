@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { Container, Section, Columns, Column, Button } from 'bulma-react'
 
 import ProductsList from './ProductsListComponent'
+import ProductSearchBar from './ProductSearchBarComponent'
 
 export default class ProductsPageComponent extends Component {
 
@@ -16,10 +17,7 @@ export default class ProductsPageComponent extends Component {
       return (
         <Columns>
           <Column is-10>
-            <div className="control has-icon">
-              <input type="text" name="search" className="input is-flat" placeholder="Search here..."/>
-              <i className="fa fa-search"></i>
-            </div>
+            <ProductSearchBar searchProducts={this.props.searchProducts}/>
           </Column>
           <Column is-2>
             <Link to="admin/products/new" className="button is-primary">New Product</Link>
@@ -30,10 +28,7 @@ export default class ProductsPageComponent extends Component {
       return (
         <Columns>
           <Column is-12>
-            <div className="control has-icon">
-              <input type="text" name="search" className="input is-flat" placeholder="Search here..."/>
-              <i className="fa fa-search"></i>
-            </div>
+            <ProductSearchBar searchProducts={this.props.searchProducts}/>
           </Column>
         </Columns>
       )
