@@ -31,7 +31,10 @@ export function removeCartProduct (productIndex) {
 
 export function updateCartProduct (productIndex, quantity) {
   return (dispatch) => {
-    dispatch({ type: UPDATE_PRODUCT_QTY_ON_CART, payload: { index: productIndex, qty: quantity } })
+    if ( Number.isInteger( Number(quantity) ) && quantity > 0 )
+      dispatch({ type: UPDATE_PRODUCT_QTY_ON_CART, payload: { index: productIndex, qty: quantity } })
+    else
+      alertify.logPosition("top right").error("Quantidade inválida.")
   }
 }
 
