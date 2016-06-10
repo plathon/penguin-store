@@ -29,13 +29,14 @@ var localStore = LocalStore()
 * Load more products
 **/
 
-export function loadMoreProducts (limit, offset) {
+export function loadMoreProducts (limit, offset, criteria = {}) {
   return (dispatch) => {
     dispatch({ type: START_PRODUCTS_LOAD_MORE })
     request.get('products', {
       params: {
         limit: limit,
-        offset: offset
+        offset: offset,
+        ...criteria
       }
     })
     .then(function (res) {
@@ -46,6 +47,7 @@ export function loadMoreProducts (limit, offset) {
         }
       })
     }).catch(function (err) {
+      console.log(err)
       dispatch({ type: PRODUCTS_LOAD_MORE_FAILED });
     })
   }

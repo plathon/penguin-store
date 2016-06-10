@@ -6,9 +6,9 @@ export default function TopBarCategoryComponent (props) {
       <nav className="tabs">
         <div className="container">
           <ul>
-            <li className="is-active"><a>All</a></li>
+            <li className="is-active"><a onClick={props.searchProducts.bind(this, {})}>All</a></li>
             {props.categories.map((category, i) =>
-              <li key={i}><a onClick={props.searchProducts.bind(this, { category: category.name })}>{category.name}</a></li>
+              <li className="is-active" key={i}><a onClick={props.searchProducts.bind(this, { category: category.name })}>{category.name}</a></li>
             )}
           </ul>
         </div>

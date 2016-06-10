@@ -24,7 +24,8 @@ export default class ProductsPageComponent extends Component {
                 onClick={this.props.loadMoreProducts.bind(
                   this,
                   this.props.limit,
-                  this.props.offset )
+                  this.props.offset,
+                  this.props.searchCriteria)
                 }>Load More</Button>
       )
     }
