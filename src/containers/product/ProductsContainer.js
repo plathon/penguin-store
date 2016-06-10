@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { insertProductToCart } from '../../actions/cart'
-import { removeProduct, retrieveProducts, searchProducts } from '../../actions/product'
+import { removeProduct, retrieveProducts, searchProducts, loadMoreProducts } from '../../actions/product'
 import { retrieveCategories } from '../../actions/category'
 
 import ProductsPage from '../../components/product/ProductsPageComponent'
@@ -21,7 +21,10 @@ class ProductsContainer extends Component {
                          searchProducts={this.props.searchProducts}
                          searchCriteria={this.props.searchCriteria}
                          removeProduct={this.props.removeProduct}
+                         loadMoreProducts={this.props.loadMoreProducts}
                          isLoading={this.props.isLoading}
+                         limit={this.props.limit}
+                         offset={this.props.offset}
                          userIsAdmin={(this.props.userType == "admin")}/>
   }
 }
@@ -32,7 +35,9 @@ function mapStateToProps (state) {
     products: state.product.items,
     searchCriteria: state.product.search,
     userType: state.user.data.type,
-    isLoading: state.product.is_loading
+    isLoading: state.product.is_loading,
+    limit: state.product.limit,
+    offset: state.product.offset
   }
 }
 
@@ -42,7 +47,8 @@ function mapDispatchToProps (dispatch) {
     removeProduct,
     retrieveProducts,
     retrieveCategories,
-    searchProducts }, dispatch )
+    searchProducts,
+    loadMoreProducts }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer)

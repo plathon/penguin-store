@@ -9,7 +9,25 @@ export default class ProductsPageComponent extends Component {
 
   constructor (props) {
     super(props)
-    this.renderTopbar = this.renderTopbar.bind(this)
+    this.renderTopbar         = this.renderTopbar.bind(this)
+    this.renderLoadMoreButton = this.renderLoadMoreButton.bind(this)
+  }
+
+  renderLoadMoreButton () {
+    if ( this.props.products.length >= this.props.offset ) {
+      return (
+        <Button type="button"
+                is-primary
+                is-large
+                is-loading={this.props.isLoading}
+                is-disabled={this.props.isLoading}
+                onClick={this.props.loadMoreProducts.bind(
+                  this,
+                  this.props.limit,
+                  this.props.offset )
+                }>Load More</Button>
+      )
+    }
   }
 
   renderTopbar () {
@@ -49,7 +67,7 @@ export default class ProductsPageComponent extends Component {
                         userIsAdmin={this.props.userIsAdmin}/>
 
           <div className="is-text-centered">
-            <Button is-primary is-large>Load More</Button>
+            {this.renderLoadMoreButton()}
           </div>
 
         </Container>

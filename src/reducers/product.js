@@ -14,12 +14,19 @@ import { START_PRODUCTS_RETRIEVE,
          UPDATE_PRODUCT_SEARCH_PARAMS,
          START_PRODUCT_SEARCH,
          PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY,
-         PRODUCT_SEARCH_FAILED } from '../constants/ActionTypes'
+         PRODUCT_SEARCH_FAILED,
+         START_PRODUCTS_LOAD_MORE,
+         PRODUCTS_LOAD_MORE_FAILED,
+         PRODUCTS_LOAD_MORE_SUCCESS } from '../constants/ActionTypes'
 
 const initialState = {
   data: {},
   items: [],
   search: {},
+  limit: 9,
+  offset: 9,
+  reset_limit: 9,
+  reset_offset: 9,
   is_loading: false
 }
 
@@ -43,7 +50,7 @@ export default (state = initialState, action) => {
     case PRODUCT_INSERTED_SUCCESSFULLY:
       return { ...state,
                is_loading: false,
-               items: [ ...state.items, action.payload ] }
+               items: [ action.payload, ...state.items ] }
 
     case PRODUCT_INSERT_FAILED:
       return { ...state, is_loading: false }
@@ -88,12 +95,31 @@ export default (state = initialState, action) => {
              }
 
     case START_PRODUCT_SEARCH:
-      return { ...state, is_loading: false }
+      return { ...state,
+               is_loading: true, }
 
     case PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY:
-      return { ...state, items: action.payload, is_loading: true }
+      return { ...state,
+               items: action.payload,
+               is_loading: false,
+               offset: state.reset_offset }
 
     case PRODUCT_SEARCH_FAILED:
+      return { ...state, is_loading: false }
+
+    case START_PRODUCTS_LOAD_MORE:
+      return { ...state, is_loading: true }
+
+    case PRODUCTS_LOAD_MORE_SUCCESS:
+      let offset = Number(state.offset) + Number(action.payload.offset)
+      return { ...state,
+               is_loading: false,
+               offset: offset,
+               items: [ ...state.items,
+                        ...action.payload.products ]
+             }
+
+    case PRODUCTS_LOAD_MORE_FAILED:
       return { ...state, is_loading: false }
 
     default:

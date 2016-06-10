@@ -18,9 +18,38 @@ import { START_PRODUCTS_RETRIEVE,
          UPDATE_PRODUCT_SEARCH_PARAMS,
          START_PRODUCT_SEARCH,
          PRODUCT_SEARCH_RETRIEVED_SUCCESSFULLY,
-         PRODUCT_SEARCH_FAILED } from '../constants/ActionTypes'
+         PRODUCT_SEARCH_FAILED,
+         START_PRODUCTS_LOAD_MORE,
+         PRODUCTS_LOAD_MORE_FAILED,
+         PRODUCTS_LOAD_MORE_SUCCESS } from '../constants/ActionTypes'
 
 var localStore = LocalStore()
+
+/**
+* Load more products
+**/
+
+export function loadMoreProducts (limit, offset) {
+  return (dispatch) => {
+    dispatch({ type: START_PRODUCTS_LOAD_MORE })
+    request.get('products', {
+      params: {
+        limit: limit,
+        offset: offset
+      }
+    })
+    .then(function (res) {
+      var products = res.data.products;
+      dispatch({ type: PRODUCTS_LOAD_MORE_SUCCESS, payload: {
+          offset: offset,
+          products: products
+        }
+      })
+    }).catch(function (err) {
+      dispatch({ type: PRODUCTS_LOAD_MORE_FAILED });
+    })
+  }
+}
 
 /**
 * Search products
@@ -28,7 +57,6 @@ var localStore = LocalStore()
 
 export function searchProducts (criteria) {
   return (dispatch) => {
-    console.log(criteria)
     hashHistory.push({ pathname: '/', query: criteria })
     dispatch({ type: UPDATE_PRODUCT_SEARCH_PARAMS, payload: criteria })
     dispatch({ type: START_PRODUCT_SEARCH })
