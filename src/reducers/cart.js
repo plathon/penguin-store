@@ -21,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
       if (!productExists){
         return { ...state,
                  items: [ ...state.items,
-                          { name: payload.name, quantity: 1, price: payload.price }
+                          { _id: payload._id, name: payload.name, quantity: 1, price: payload.price }
                         ],
                  subtotal: Number(state.subtotal) + Number(payload.price),
                  total: Number(state.total) + Number(payload.price)

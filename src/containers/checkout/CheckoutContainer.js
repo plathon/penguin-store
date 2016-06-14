@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { checkout } from '../../actions/order'
+import { findAddress } from '../../actions/address'
 
 import CheckoutPage from '../../components/checkout/CheckoutPageComponent'
 
 class CheckoutContainer extends Component {
+  componentWillMount () {
+    if (!this.props.addresses.length)
+      this.props.findAddress()
+  }
+
   render () {
     return (
       <CheckoutPage addresses={this.props.addresses}
@@ -27,7 +33,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators( { checkout }, dispatch )
+  return bindActionCreators( { checkout, findAddress }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer)

@@ -47,7 +47,6 @@ export const PRODUCT_SEARCH_FAILED                  = 'PRODUCT_SEARCH_FAILED'
 export const START_PRODUCTS_LOAD_MORE               = 'START_PRODUCTS_LOAD_MORE'
 export const PRODUCTS_LOAD_MORE_FAILED              = 'PRODUCTS_LOAD_MORE_FAILED'
 export const PRODUCTS_LOAD_MORE_SUCCESS             = 'PRODUCTS_LOAD_MORE_SUCCESS'
-
 /**
 * Categories Actions
 **/
@@ -82,6 +81,9 @@ export const EMPTY_CART                             = 'EMPTY_CART'
 /**
 * Order Actions
 **/
+export const START_ORDER_RETRIEVE                   = 'START_ORDER_RETRIEVE'
+export const ORDER_RETRIEVED_SUCCESSFULLY           = 'ORDER_RETRIEVED_SUCCESSFULLY'
+export const ORDER_RETRIEVE_FAILED                  = 'ORDER_RETRIEVE_FAILED'
 export const START_ORDER_CREATE                     = 'START_ORDER_CREATE'
 export const ORDER_CREATED_SUCCESSFULLY             = 'ORDER_CREATED_SUCCESSFULLY'
 export const ORDER_CREATE_FAILED                    = 'ORDER_CREATE_FAILED'

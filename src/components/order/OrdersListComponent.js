@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Columns, Column, Subtitle, Table } from 'bulma-react'
+import { Columns, Column, Subtitle, Table, Button } from 'bulma-react'
 
 class OrdersListComponent extends Component {
 
   renderEmptyLabel (orders) {
     if (!orders.length)
-      return <Subtitle is-4 is-text-centered>You don't have any order yet :(</Subtitle>
+      return <Subtitle is-4 is-text-centered>You dont have any order yet :(</Subtitle>
   }
 
   render () {
@@ -53,7 +53,7 @@ class OrdersListComponent extends Component {
               <Column is-5 is-offset-1>
                 <Subtitle is-3>Payment</Subtitle>
                 <p>Payment Method: <strong>Credit Card</strong></p>
-                <p>Status: <span className="tag is-warning">Waiting for payment</span></p>
+                <p>Status: <span className="tag is-warning">{order.status}</span> <Button is-small is-primary>$ Pay now!</Button></p>
               </Column>
 
               <Column is-5 is-offset-1>

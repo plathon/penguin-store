@@ -4,6 +4,7 @@ import { loadShipping } from '../../actions/shipping'
 import { Input, Button, Textarea, Select, Checkbox, Control, Subtitle } from 'bulma-react'
 
 const countries = [
+  {"name": "all", "code": "all"},
   {"name": "Afghanistan", "code": "AF"},
   {"name": "land Islands", "code": "AX"},
   {"name": "Albania", "code": "AL"},
